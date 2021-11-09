@@ -7,10 +7,17 @@ CREATE TABLE Users (
     Fname VARCHAR(32) NOT NULL,
     Lname VARCHAR(32) NOT NULL,
     HPassword VARCHAR(32) NOT NULL,
-    Email VARCHAR(32) NOT NULL,
+    Email VARCHAR(32) NOT NULL UNIQUE,
     HomeAddress VARCHAR(32),
-    isAdmin BOOLEAN NOT NULL DEFAULT false,
+    -- isAdmin BOOLEAN NOT NULL DEFAULT false,
     PRIMARY KEY(UserID)
+);
+
+CREATE TABLE Admins (
+    AdminID INT NOT NULL AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    PRIMARY KEY(AdminID),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
 CREATE TABLE Products (
