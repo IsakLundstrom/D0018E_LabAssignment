@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 body {
   background-color: rgb(94, 255, 0);
   display: flex;
