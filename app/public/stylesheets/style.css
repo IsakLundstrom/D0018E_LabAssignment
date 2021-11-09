@@ -1,0 +1,16 @@
+body {
+  background-color: rgb(94, 255, 0);
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+}
+img {
+  margin: 0 auto;
+}
+video {
+  margin: 0 auto;
+}
+#eddie {
+  display: flex;
+  flex-flow: row;
+}
