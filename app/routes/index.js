@@ -37,13 +37,14 @@ router.get('/myform', function(req, res){
 
 /*GET info from DB*/ 
 router.get('/sel', function(req, res){
-  var myText = req.query.sel;
-  var sql = `SELECT address FROM customers WHERE address = '${myText}'`;
+  //var myText = req.query.sel;
+  // var sql = `SELECT address FROM customers WHERE address = '${myText}'`;
+  var sql = `SELECT * FROM customers`;
   // QUERY DB
   db.query(sql, function (err, result) {
     if (err) throw err;
-    console.log(result[0].address);
-    res.send(result[0].address);
+    //console.log(result[0].address);
+    res.render("index", { customerTable: result });
   });
 });
 

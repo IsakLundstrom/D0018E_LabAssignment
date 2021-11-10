@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    
+    <title>Em Analuel</title>
+
+</head>
+<body>
+    <h1>LALANAWNFHAWFBUYAUFGBVAFWFWBUWFIAJEHBIBAWFJBHFAHFJBW</h1>
+    <p> En shop </p>
+    
+    <form action="/myform" method="GET"> 
+        <input type="text" name="mytext" required /> 
+        <input type="submit" value="Submit" /> 
+    </form> 
+
+    <form action="/sel" method="GET"> 
+        <input type="text" name="sel" required /> 
+        <input type="submit" value="Submit" /> 
+    </form>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+        <%
+        if(customerTable.length != 0) {
+            customerTable.forEach(function(data){
+        %>
+        <tr>
+            <td><%=data.name %></td>
+            <td><%=data.address %></td>
+        </tr>
+        <% });
+        
+         } %>
+
+
+    </table>
+   
+</body>
+</html>

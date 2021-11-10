@@ -3,3 +3,17 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+
+  //- ul
+  //-     each item in customers
+  //-       li=item
+
+  table.hej 
+    tr
+      th ADRESSSSSS
+      th LUL
+    each item in customers
+      tr
+        td=item.name 
+        td=item.address
