@@ -6,6 +6,23 @@ body {
   flex-flow: column;
   text-align: center;
 }
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  
+}
+
+nav ul li {
+  margin: 0 auto;
+}
+
+nav ul li a {
+  padding: 50px;
+  background-color: aqua;
+  
+}
+
 img {
   margin: 0 auto;
 }
