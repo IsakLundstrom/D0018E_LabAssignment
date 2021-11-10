@@ -32,30 +32,29 @@ CREATE TABLE Products (
 );
 
 CREATE TABLE Cart (
-    CartID INT NOT NULL AUTO_INCREMENT,
     CustID INT NOT NULL,
     ProdID INT NOT NULL,
     AmountToBuy INT NOT NULL,
-    PRIMARY KEY(CartID),
+    PRIMARY KEY(CustID, ProdID),
     FOREIGN KEY (CustID) REFERENCES Users(UserID), 
     FOREIGN KEY (ProdID) REFERENCES Products(ProdID)
 );
 
 CREATE TABLE Orders (
-    OrderID INT NOT NULL AUTO_INCREMENT,
-    CustID INT NOT NULL,
+    OrderID INT NOT NULL,
     ProdID INT NOT NULL,
+    CustID INT NOT NULL,
     AmountToBuy INT(4) NOT NULL,
     OrderStatus ENUM('ToOrder', 'Shipped', 'Completed'),
-    PRIMARY KEY(OrderID),
+    PRIMARY KEY(OrderID, ProdID),
     FOREIGN KEY (CustID) REFERENCES Users(UserID), 
     FOREIGN KEY (ProdID) REFERENCES Products(ProdID)
 );
 
 CREATE TABLE Reviews (
     ReviewID INT NOT NULL AUTO_INCREMENT,
-    CustID INT NOT NULL,
     ProdID INT NOT NULL,
+    CustID INT NOT NULL,
     Rating INT(1) NOT NULL,
     Comment TEXT,
     PRIMARY KEY(ReviewID),
