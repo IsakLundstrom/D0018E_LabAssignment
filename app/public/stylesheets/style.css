@@ -17,6 +17,10 @@ video {
   flex-flow: row;
 }
 
+h1 {
+  color: rgb(253, 15, 162);
+}
+
 .hej {
   background-color: red;
 

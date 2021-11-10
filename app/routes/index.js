@@ -1,22 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const mysql = require('mysql');
-
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "mydb" // ÄNDRA TILL RÄTT DB
-});
-
-db.connect(err => {
-  if(err) throw err;
-  console.log("DB connected")
-});
-
-
-
-
+var db=require('../db'); // GET ACCESS TO DB
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
