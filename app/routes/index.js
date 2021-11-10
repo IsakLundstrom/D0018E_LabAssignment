@@ -28,7 +28,7 @@ router.get('/sel', function(req, res){
   db.query(sql, function (err, result) {
     if (err) throw err;
     //console.log(result[0].address);
-    res.render("index", { customerTable: result });
+    res.render("test", { customerTable: result });
   });
 });
 
