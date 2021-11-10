@@ -2,5 +2,3 @@
 D0018E_LabAssignment
 
 TEST
-
-Hej B^)
