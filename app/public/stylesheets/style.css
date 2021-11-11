@@ -51,5 +51,5 @@ h1 {
 
 .UsersForm{
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
 }
