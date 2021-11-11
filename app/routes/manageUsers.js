@@ -35,6 +35,7 @@ router.get('/', function(req, res){
     var password = req.query.password;
     var mail = req.query.mail;
     var address = req.query.address;
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
     //var sql = `INSERT INTO customers (name, address) VALUES ('Company Inc', '${myText}')`;
     var sql = `INSERT INTO Users (Fname, Lname, HPassword, Email, HomeAddress) VALUES ('${fName}', '${lName}', '${password}', '${mail}', '${address}')`;
