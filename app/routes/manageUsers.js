@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
     db.query(sql, function (err, result) {
         if (err) throw err;
         
-        res.render("test", { customerTable: result });
+        res.render("test", { UsersTable: result });
 
     });
     //console.log(getDB("SELECT * FROM customers"));
