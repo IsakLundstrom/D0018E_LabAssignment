@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheets/style.css">
     
-    <title>Test</title>
+    <title>Manage Users</title>
 
 </head>
 <body>
-    <h1>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
-    <p> En shop </p>
+    <h1>Users</h1>
+    <p> The users in the database </p>
     
-    <form action="/myform" method="GET">
+    <form action="/UsersForm" method="GET">
         <input type="text" name="fName" required />
         <input type="text" name="lName" required /> 
         <input type="password" name="password" required autocomplete="off" /> 
@@ -26,11 +26,7 @@
         <input type="submit" value="Submit" /> 
     </form>
 
-
-
-    
-
-    <table class="hej">
+    <table class="table">
         <tr>
             <th>UserID</th>
             <th>Name</th>
@@ -40,8 +36,8 @@
             <th>Address</th>
         </tr>
         <%
-        if(customerTable.length != 0) {
-            customerTable.forEach(function(data){
+        if(UsersTable.length != 0) {
+            UsersTable.forEach(function(data){
         %>
         <tr>
             <td><%=data.UserID; %></td>

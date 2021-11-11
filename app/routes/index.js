@@ -7,15 +7,13 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/*GET info from form*/ 
-router.get('/myform', function(req, res){  
+/*GET Users info from form*/ 
+router.get('/UsersForm', function(req, res){  
     var fName = req.query.fName; //mytext is the name of your input box   
     var lName = req.query.lName;
     var password = req.query.password;
     var mail = req.query.mail;
     var address = req.query.address;
-
-
 
     //var sql = `INSERT INTO customers (name, address) VALUES ('Company Inc', '${myText}')`;
     var sql = `INSERT INTO Users (Fname, Lname, HPassword, Email, HomeAddress) VALUES ('${fName}', '${lName}', '${password}', '${mail}', '${address}')`;
@@ -35,7 +33,7 @@ router.get('/sel', function(req, res){
   db.query(sql, function (err, result) {
     if (err) throw err;
     //console.log(result[0].address);
-    res.render("test", { customerTable: result });
+    res.render("test", { UsersTable: result });
   });
 });
 
