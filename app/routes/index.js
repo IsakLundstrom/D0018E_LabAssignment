@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 /*GET Users info from form*/ 
-router.post('/manageUsers', function(req, res){  
+router.post('/usersForm', function(req, res){  
   var fName = req.query.fName; //mytext is the name of your input box   
   var lName = req.query.lName;
   var password = req.query.password;
