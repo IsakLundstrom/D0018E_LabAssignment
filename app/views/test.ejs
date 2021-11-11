@@ -12,8 +12,12 @@
     <h1>LALANAWNFHAWFBUYAUFGBVAFWFWBUWFIAJEHBIBAWFJBHFAHFJBW</h1>
     <p> En shop </p>
     
-    <form action="/myform" method="GET"> 
-        <input type="text" name="mytext" required /> 
+    <form action="/myform" method="GET">
+        <input type="text" name="fName" required />
+        <input type="text" name="lName" required /> 
+        <input type="password" name="password" required autocomplete="off" /> 
+        <input type="email" name="mail" required /> 
+        <input type="text" name="address" /> 
         <input type="submit" value="Submit" /> 
     </form> 
 
@@ -22,9 +26,17 @@
         <input type="submit" value="Submit" /> 
     </form>
 
+
+
+    
+
     <table class="hej">
         <tr>
+            <th>UserID</th>
             <th>Name</th>
+            <th>Last name</th>
+            <th>Password</th>
+            <th>Mail</th>
             <th>Address</th>
         </tr>
         <%
@@ -32,8 +44,12 @@
             customerTable.forEach(function(data){
         %>
         <tr>
-            <td><%=data.name; %></td>
-            <td><%=data.address; %></td>
+            <td><%=data.UserID; %></td>
+            <td><%=data.Fname; %></td>
+            <td><%=data.Lname; %></td>
+            <td><%=data.HPassword; %></td>
+            <td><%=data.Email; %></td>
+            <td><%=data.HomeAddress; %></td>
         </tr>
         <% });
         
@@ -41,3 +57,4 @@
 
 
     </table>
+</body>

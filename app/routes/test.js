@@ -12,7 +12,7 @@ var db=require('../db');
 // }
 
 router.get('/', function(req, res, next) {
-    var sql = `SELECT * FROM customers`;
+    var sql = `SELECT * FROM Users`;
     db.query(sql, function (err, result) {
         if (err) throw err;
         

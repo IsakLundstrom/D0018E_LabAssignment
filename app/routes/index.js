@@ -9,9 +9,16 @@ router.get('/', function(req, res, next) {
 
 /*GET info from form*/ 
 router.get('/myform', function(req, res){  
-    var myText = req.query.mytext; //mytext is the name of your input box   
-    console.log(myText);   
-    var sql = `INSERT INTO customers (name, address) VALUES ('Company Inc', '${myText}')`;
+    var fName = req.query.fName; //mytext is the name of your input box   
+    var lName = req.query.lName;
+    var password = req.query.password;
+    var mail = req.query.mail;
+    var address = req.query.address;
+
+
+
+    //var sql = `INSERT INTO customers (name, address) VALUES ('Company Inc', '${myText}')`;
+    var sql = `INSERT INTO Users (Fname, Lname, HPassword, Email, HomeAddress) VALUES ('${fName}', '${lName}', '${password}', '${mail}', '${address}')`;
     // QUERY DB
     db.query(sql, function (err, result) {
       if (err) throw err;
@@ -23,7 +30,7 @@ router.get('/myform', function(req, res){
 router.get('/sel', function(req, res){
   //var myText = req.query.sel;
   // var sql = `SELECT address FROM customers WHERE address = '${myText}'`;
-  var sql = `SELECT * FROM customers`;
+  var sql = `SELECT * FROM Users`;
   // QUERY DB
   db.query(sql, function (err, result) {
     if (err) throw err;
