@@ -21,6 +21,8 @@ router.get('/UsersForm', function(req, res){
     db.query(sql, function (err, result) {
       if (err) throw err;
       console.log("1 record inserted");
+
+      res.render("manageUsers", { UsersTable: result });
   });
 });
 
