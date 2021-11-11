@@ -41,10 +41,15 @@ video {
 }
 
 h1 {
-  color: rgb(253, 15, 162);
+  //color: rgb(253, 15, 162);
 }
 
 .table {
   background-color: red;
 
+}
+
+.UsersForm{
+  display: flex;
+  flex-flow: row;
 }

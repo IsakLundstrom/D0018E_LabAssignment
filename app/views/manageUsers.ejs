@@ -12,7 +12,7 @@
     <h1>Users</h1>
     <p> The users in the database </p>
     
-    <form action="/UsersForm" method="GET">
+    <form class="UsersForm" action="/UsersForm" method="GET">
         <input type="text" name="fName" required />
         <input type="text" name="lName" required /> 
         <input type="password" name="password" required autocomplete="off" /> 
@@ -20,11 +20,6 @@
         <input type="text" name="address" /> 
         <input type="submit" value="Submit" /> 
     </form> 
-
-    <form action="/sel" method="GET"> 
-        <input type="text" name="sel" required /> 
-        <input type="submit" value="Submit" /> 
-    </form>
 
     <table class="table">
         <tr>
