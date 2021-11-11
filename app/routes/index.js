@@ -23,7 +23,7 @@ router.get('/usersForm', function(req, res){
     if (err) throw err;
     console.log("1 record inserted");
 
-    res.redirect('/');
+    res.redirect('/manageUsers');
   });
 });
 
