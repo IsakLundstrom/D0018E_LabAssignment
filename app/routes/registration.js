@@ -11,14 +11,14 @@ var db=require('../db');
 
 // }
 
-/*GET Users info from form*/ 
-router.get('/usersForm', function(req, res){  
-    var fName = req.query.fName; //mytext is the name of your input box   
-    var lName = req.query.lName;
-    var password = req.query.password;
-    var mail = req.query.mail;
-    var address = req.query.address;
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+/*Post/Resister User info to the datbase*/ 
+router.post('/usersForm', function(req, res){  
+    var fName = req.body.fName; //Get data from the form  
+    var lName = req.body.lName;
+    var password = req.body.password;
+    var mail = req.body.mail;
+    var address = req.body.address;
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"); //weird log
   
     //var sql = `INSERT INTO customers (name, address) VALUES ('Company Inc', '${myText}')`;
     var sql = `INSERT INTO Users (Fname, Lname, HPassword, Email, HomeAddress) VALUES ('${fName}', '${lName}', '${password}', '${mail}', '${address}')`;
@@ -28,6 +28,7 @@ router.get('/usersForm', function(req, res){
       console.log("1 record inserted");
   
       res.redirect('/registration');
+      res.end();
     });
   });
 
