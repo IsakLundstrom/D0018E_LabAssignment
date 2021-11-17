@@ -8,7 +8,7 @@ CREATE TABLE Users (
     Lname VARCHAR(32) NOT NULL,
     HPassword VARCHAR(32) NOT NULL,
     Email VARCHAR(32) NOT NULL UNIQUE,
-    HomeAddress VARCHAR(32),
+    HomeAddress VARCHAR(32) NOT NULL,
     -- isAdmin BOOLEAN NOT NULL DEFAULT false,
     PRIMARY KEY(UserID)
 );
@@ -44,6 +44,7 @@ CREATE TABLE Orders (
     OrderID INT NOT NULL,
     ProdID INT NOT NULL,
     CustID INT NOT NULL,
+    Price INT NOT NULL,
     AmountToBuy INT(4) NOT NULL,
     OrderStatus ENUM('ToOrder', 'Shipped', 'Completed'),
     PRIMARY KEY(OrderID, ProdID),
