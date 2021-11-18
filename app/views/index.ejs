@@ -37,5 +37,29 @@
         
     <% } %>
 
+
+    <section class="productContainer">
+        <%
+        if(ProductTable.length != 0) {
+            ProductTable.forEach(function(data){
+        %>
+            <a href="/lol">
+                <section class="product">
+                    <p><%=data.Pname; %></p>
+                    <img src="<%=data.Picture; %>" alt="awawdaw">
+                    <p><%=data.Price; %></p>
+                    <p><%=data.Pdesc; %></p>
+                    <p><%=data.AmountInStock; %></p>
+                    <form action="/addToCart">
+                        <input type="submit" value="Add to cart" /> 
+                    </form>
+                </section>
+            </a> 
+        <% });
+        
+        } %>
+    </section>
+
+
 </body>
 </html>

@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 
 var registrationRouter = require('./routes/registration'); // SE HÄR
 var loginRouter = require('./routes/login');
+// var productRouter = require('./routes/product');
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use('/users', usersRouter);
 
 app.use('/registration', registrationRouter); // SE HÄR
 app.use('/login', loginRouter);
+// app.use('/product', productRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

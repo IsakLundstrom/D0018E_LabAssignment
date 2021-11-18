@@ -29,6 +29,37 @@ nav ul li a {
   
 }
 
+.productContainer {
+  background-color: red;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 20px;
+
+}
+
+.product {
+  
+}
+
+.productContainer a {
+  color: black;
+  border: 2px solid black;
+  background-color: rebeccapurple;
+  text-decoration: none;
+  transition: 0.2s;
+  
+}
+
+.productContainer a:hover {
+  background-color: brown;
+}
+
+.product img {
+  max-height: 400px;
+  max-width: 80%;
+}
+
 img {
   margin: 0 auto;
 }
@@ -38,10 +69,6 @@ video {
 #eddie {
   display: flex;
   flex-flow: row;
-}
-
-h1 {
-  /* color: rgb(253, 15, 162); */
 }
 
 .table {

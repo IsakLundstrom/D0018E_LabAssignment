@@ -4,7 +4,14 @@ var db=require('../db'); // GET ACCESS TO DB
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { session: req.session });
+
+  var sql = `SELECT * FROM Products`;
+    db.query(sql, function (err, result) {
+        if (err) throw err;
+        
+        res.render("index", { ProductTable: result, session: req.session });
+
+    });
 });
 
 router.get('/logout', function(req, res, next) {
