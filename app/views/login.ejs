@@ -1,9 +1,10 @@
-<html lang="sv">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     
     <title>Login</title>
 
@@ -24,8 +25,18 @@
             </li>
         </ul>
     </nav>
+
+    <p id="loginInfo"></p>
+
+    <!-- Shows login error -->
+    <script>
+    if (window.location.href == "http://130.240.200.33:3000/login/?valid=fail") {
+        document.getElementById("loginInfo").innerHTML = "Login Error";
+    }    
+    </script>
+     
     
-    <form class="loginForm" action="login/loginForm" method="POST">
+    <form class="loginForm" action="/login/loginForm" method="POST">
         <input type="email" name="mail" placeholder="Mail" required /> 
         <input type="password" name="password" placeholder="Password" required autocomplete="on" /> 
         <input type="submit" value="Submit" /> 

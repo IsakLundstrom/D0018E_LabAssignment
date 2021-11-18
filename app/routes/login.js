@@ -10,7 +10,6 @@ router.post('/loginForm', function(req, res){
     
     console.log("loginRA"); //weird log
   
-    //var sql = `INSERT INTO Users (Fname, Lname, HPassword, Email, HomeAddress) VALUES ('${fName}', '${lName}', '${password}', '${mail}', '${address}')`;
     var sql = `SELECT * FROM Users WHERE Email = '${mail}' AND HPassword = '${password}'`;
     // QUERY DB
     db.query(sql, function (err, result, fields) {
@@ -22,7 +21,9 @@ router.post('/loginForm', function(req, res){
       } 
       else {
         console.log("did not login");
-        res.redirect('/login');
+        var url = encodeURIComponent('fail');
+        res.redirect('/login/?valid=' + url);
+        
       }
       res.end();
     });
@@ -32,7 +33,7 @@ router.post('/loginForm', function(req, res){
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   
-    res.render("login");
+    res.render("login" , { isFailedLogin: false });
 });
 
 module.exports = router;
