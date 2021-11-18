@@ -22,10 +22,20 @@
                 <a href="/login">Login</a>
             </li>
             <li>
-                <a href="https://www.bing.com/">🤢</a>
+                <a href="/logout">Logout</a>
             </li>
         </ul>
     </nav>
     <p> En fin hemsida, inte cursed </p>
+    <% if (session.userid) { %>
+
+        <p>Inloggad</p>
+
+    <% } else { %>
+
+        <p>INTE inloggad</p>
+        
+    <% } %>
+
 </body>
 </html>

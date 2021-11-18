@@ -16,7 +16,9 @@ router.post('/loginForm', function(req, res){
       if (err) throw err;
 
       if (result.length > 0){
-        console.log("home");
+        req.session.userid = result[0].UserID;
+        console.log(req.session);
+
         res.redirect('/');
       } 
       else {

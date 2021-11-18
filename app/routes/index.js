@@ -4,10 +4,13 @@ var db=require('../db'); // GET ACCESS TO DB
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { session: req.session });
 });
 
-
+router.get('/logout', function(req, res, next) {
+  req.session.destroy();
+  res.redirect('/');
+});
 
 
 /*GET info from DB*/ 
