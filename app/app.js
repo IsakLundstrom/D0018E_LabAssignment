@@ -8,7 +8,6 @@ var logger = require('morgan');
 var sessions = require('express-session');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var registrationRouter = require('./routes/registration'); // SE HÄR
 var loginRouter = require('./routes/login');
@@ -30,7 +29,6 @@ const oneDay = 1000 * 60 * 60 * 24;
 app.use(sessions({secret: "Eddie123", saveUninitialized: true, cookie: { maxAge: oneDay }, resave: false}));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 app.use('/registration', registrationRouter); // SE HÄR
 app.use('/login', loginRouter);
