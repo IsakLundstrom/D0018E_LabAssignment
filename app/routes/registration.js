@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   var sql = `SELECT * FROM Users`;
   db.query(sql, function (err, result) {
       if (err) throw err;
-      res.render("registration", { UsersTable: result });
+      res.render("registration", { UsersTable: result, session: req.session });
   });
 });
 

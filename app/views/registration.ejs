@@ -1,65 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheets/style.css">
-    
+    <%- include('head.ejs'); %>
     <title>Registration</title>
-
 </head>
 <body>
-    <h1>Sign up page</h1>
 
-    <nav>
-        <ul>
-            <li>
-                <a href="/">Home</a>
-            </li>
-            <li>
-                <a href="https://www.ltu.se/">LTU</a>
-            </li>
-            <li>
-                <a href="https://www.bing.com/">🤢</a>
-            </li>
-        </ul>
-    </nav>
+    <header>
+        <section class="content">
+            <%- include('header.ejs'); %>
+        </section>
+    </header>
+
+    <main>
+
+        <section class="mainContent">
+
+            <h1>Sign up page</h1>
+            
+            <form class="UsersForm" action="registration/usersForm" method="POST">
+                <input type="text" name="fName" placeholder="Name" required />
+                <input type="text" name="lName" placeholder="Last name" required /> 
+                <input type="password" name="password" placeholder="Password" required autocomplete="off" /> 
+                <input type="email" name="mail" placeholder="Mail" required /> 
+                <input type="text" name="address" placeholder="Address" /> 
+                <input type="submit" value="Submit" /> 
+            </form> 
+
+            <table class="table">
+                <tr>
+                    <th>UserID</th>
+                    <th>Name</th>
+                    <th>Last name</th>
+                    <th>Password</th>
+                    <th>Mail</th>
+                    <th>Address</th>
+                </tr>
+                <%
+                if(UsersTable.length != 0) {
+                    UsersTable.forEach(function(data){
+                %>
+                <tr>
+                    <td><%=data.UserID; %></td>
+                    <td><%=data.Fname; %></td>
+                    <td><%=data.Lname; %></td>
+                    <td><%=data.HPassword; %></td>
+                    <td><%=data.Email; %></td>
+                    <td><%=data.HomeAddress; %></td>
+                </tr>
+                <% });
+                
+                } %>
+
+            </table>
+
+        </section>
     
-    <form class="UsersForm" action="registration/usersForm" method="POST">
-        <input type="text" name="fName" placeholder="Name" required />
-        <input type="text" name="lName" placeholder="Last name" required /> 
-        <input type="password" name="password" placeholder="Password" required autocomplete="off" /> 
-        <input type="email" name="mail" placeholder="Mail" required /> 
-        <input type="text" name="address" placeholder="Address" /> 
-        <input type="submit" value="Submit" /> 
-    </form> 
+    </main>
 
-    <table class="table">
-        <tr>
-            <th>UserID</th>
-            <th>Name</th>
-            <th>Last name</th>
-            <th>Password</th>
-            <th>Mail</th>
-            <th>Address</th>
-        </tr>
-        <%
-        if(UsersTable.length != 0) {
-            UsersTable.forEach(function(data){
-        %>
-        <tr>
-            <td><%=data.UserID; %></td>
-            <td><%=data.Fname; %></td>
-            <td><%=data.Lname; %></td>
-            <td><%=data.HPassword; %></td>
-            <td><%=data.Email; %></td>
-            <td><%=data.HomeAddress; %></td>
-        </tr>
-        <% });
-        
-         } %>
-
-    </table>
-    
 </body>
+</html>

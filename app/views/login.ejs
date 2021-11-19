@@ -1,44 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    
+    <%- include('head.ejs'); %>
     <title>Login</title>
-
 </head>
 <body>
-    <h1>Login</h1>
 
-    <nav>
-        <ul>
-            <li>
-                <a href="/">Home</a>
-            </li>
-            <li>
-                <a href="https://www.ltu.se/">LTU</a>
-            </li>
-            <li>
-                <a href="/logout">Logout</a>
-            </li>
-        </ul>
-    </nav>
+    <header>
+        <section class="content">
+            <%- include('header.ejs'); %>
+        </section>
+    </header>
 
-    <p id="loginInfo"></p>
+    <main>
 
-    <!-- Shows login error -->
-    <script>
-    if (window.location.href == "http://130.240.200.33:3000/login/?valid=fail") {
-        document.getElementById("loginInfo").innerHTML = "Login Error";
-    }    
-    </script>
-     
-    <form class="loginForm" action="/login/loginForm" method="POST">
-        <input type="email" name="mail" placeholder="Mail" required /> 
-        <input type="password" name="password" placeholder="Password" required autocomplete="on" /> 
-        <input type="submit" value="Submit" /> 
-    </form> 
+        <section class="mainContent">
+
+            <h1>Login</h1>
+
+            <p id="loginInfo"></p>
+
+            <!-- Shows login error -->
+            <script>
+            if (window.location.href == "http://130.240.200.33:3000/login/?login=false") {
+                document.getElementById("loginInfo").innerHTML = "Account with this email and password does not exist";
+            }    
+            </script>
+            
+            <form class="loginForm" action="/login/loginForm" method="POST">
+                <input type="email" name="mail" placeholder="Mail" required /> 
+                <input type="password" name="password" placeholder="Password" required autocomplete="on" /> 
+                <input type="submit" value="Submit" /> 
+            </form> 
+
+        </section>
+    
+    </main>
 
 </body>
+</html>

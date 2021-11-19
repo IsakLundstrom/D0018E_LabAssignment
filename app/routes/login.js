@@ -4,7 +4,7 @@ var db=require('../db');
 
 // GET login page.
 router.get('/', function(req, res, next) {
-  res.render("login");
+  res.render("login", { session: req.session });
 });
 
 //POST form data for login
@@ -27,8 +27,8 @@ router.post('/loginForm', function(req, res){
       //Login falied, reload page
       else {
         console.log("did not login");
-        var url = encodeURIComponent('fail');
-        res.redirect('/login/?valid=' + url);
+        var url = encodeURIComponent('false');
+        res.redirect('/login/?login=' + url);
       }
       res.end();
     });
