@@ -27,7 +27,7 @@ router.post('/usersForm', function(req, res){
       if (err) throw err;
       console.log("1 record inserted"); //For debug
   
-      res.redirect('/registration');
+      res.redirect('/login');
       res.end();
     });
   });

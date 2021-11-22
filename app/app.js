@@ -10,7 +10,7 @@ var sessions = require('express-session');
 var indexRouter = require('./routes/index');
 var registrationRouter = require('./routes/registration'); // SE HÄR
 var loginRouter = require('./routes/login');
-// var productRouter = require('./routes/product');
+var productRouter = require('./routes/product');
 var settingsRouter = require('./routes/settings');
 
 var app = express();
@@ -33,7 +33,7 @@ app.use(sessions({secret: "Eddie123", saveUninitialized: true, cookie: { maxAge:
 app.use('/', indexRouter);
 app.use('/registration', registrationRouter); // SE HÄR
 app.use('/login', loginRouter);
-// app.use('/product', productRouter);
+app.use('/product', productRouter);
 app.use('/settings', settingsRouter);
 
 // catch 404 and forward to error handler

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('head.ejs'); %>
+    <title>Shop</title>
+</head>
+<body>
+
+    <%- include('header.ejs'); %>
+
+    <main>
+
+        <section class="mainContent">
+            
+            <h1>Product</h1>
+
+            <section class="">
+                <%
+                if(product.length != 0) {
+                    product.forEach(function(data){
+                %>
+                    <p></p>
+            
+                    <section class="product">
+                        <p><%=data.Pname; %></p>
+                        <p><%=data.Rating; %></p>
+                        <img src="<%=data.Picture; %>" alt="awawdaw">
+                        <p><%=data.Price; %></p>
+                        <p><%=data.Pdesc; %></p>
+                        <p><%=data.AmountInStock; %></p>
+                        <form action="/addToCart">
+                            <input type="submit" value="Add to cart" /> 
+                        </form>
+                    </section>
+
+                <% });
+                
+                } %> 
+
+            </section>
+
+        </section>
+    
+    </main>
+
+</body>
+</html>

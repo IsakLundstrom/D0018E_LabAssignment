@@ -30,7 +30,7 @@
                 if(ProductTable.length != 0) {
                     ProductTable.forEach(function(data){
                 %>
-                    <a href="/lol">
+                    <a href="/product?id=<%=data.ProdID; %>">
                         <section class="product">
                             <p><%=data.Pname; %></p>
                             <img src="<%=data.Picture; %>" alt="awawdaw">
