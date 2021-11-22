@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <%- include('head.ejs'); %>
-    <title>Registration</title>
+    <title>Settings</title>
 </head>
 <body>
 
@@ -15,17 +15,21 @@
     <main>
 
         <section class="mainContent">
-
-            <h1>Sign up page</h1>
             
-            <form class="UsersForm" action="registration/usersForm" method="POST">
-                <input type="text" name="fName" placeholder="Name" required />
-                <input type="text" name="lName" placeholder="Last name" required /> 
-                <input type="password" name="password" placeholder="Password" required autocomplete="off" /> 
-                <input type="email" name="mail" placeholder="Mail" required /> 
-                <input type="text" name="address" placeholder="Address" required /> 
-                <input type="submit" value="Submit" /> 
-            </form> 
+            <h1>Settings</h1>
+
+            <p> En fin hemsida, inte cursed </p>
+            <% if (session.userid) { %>
+
+                <p>Inloggad</p>
+
+            <% } else { %>
+
+                <p>INTE inloggad</p>
+                
+            <% } %>
+
+            
 
             <table class="table">
                 <tr>
@@ -37,9 +41,18 @@
                     <th>Address</th>
                 </tr>
                 <%
-                if(UsersTable.length != 0) {
-                    UsersTable.forEach(function(data){
+                if(UserInfo.length != 0) {
+                    UserInfo.forEach(function(data){
                 %>
+
+                <form class="settingsForm" action="/settings/settingsForm" method="POST">
+                    <input type="text" name="fName" value="<%=data.Fname; %>" required autocomplete="off"/>
+                    <input type="text" name="lName" value="<%=data.Lname; %>" required autocomplete="off"/> 
+                    <input type="password" name="password" value="<%=data.HPassword; %>" required autocomplete="off" /> 
+                    <input type="text" name="address" value="<%=data.HomeAddress; %>" required autocomplete="off"/> 
+                    <input type="submit" value="Update" /> 
+                </form>
+
                 <tr>
                     <td><%=data.UserID; %></td>
                     <td><%=data.Fname; %></td>
@@ -51,8 +64,7 @@
                 <% });
                 
                 } %>
-
-            </table>
+            </section>
 
         </section>
     
