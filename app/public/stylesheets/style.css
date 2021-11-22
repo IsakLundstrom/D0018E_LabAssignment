@@ -10,18 +10,19 @@ body {
   padding: 0;
 }
 
-.content {  
+.headContent {  
   display: flex;
   flex-flow: row;
   justify-content: space-between;
-  width: 70%;
+  width: 60%;
+  height: 134px;
 }
 
 .mainContent {
   display: flex;
   align-items: center;
   flex-flow: column;
-  width: 70%;
+  width: 60%;
 }
 
 main {
@@ -29,16 +30,19 @@ main {
    justify-content: center;
 }
 
-
 header {
   display: flex;
   justify-content: center;
-  background-color: yellow;
+  background-color: palevioletred;
 }
 
 .title {
   display: flex;
   flex-flow: row;
+}
+
+.mainImage{
+  height: 134px;
 }
 
 nav {
@@ -119,4 +123,21 @@ video {
 .UsersForm{
   display: flex;
   flex-flow: column;
+}
+
+
+/* SETTINGS PAGE */
+
+.settingsForm {
+  background-color: blue;
+  padding: 40px;
+}
+
+.settingsInput {
+  /* background-color: burlywood; */
+  text-align: left;
+}
+
+.settingsInput p {
+  margin-bottom: 2px;
 }

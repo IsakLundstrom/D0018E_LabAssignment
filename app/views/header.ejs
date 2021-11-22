@@ -1,41 +1,45 @@
 
-<a href="/">
-    <section class="title">
-        <img src="/images/virgin.PNG" alt="">
-        <h1>Pen is store</h1>
+<header>
+    <section class="headContent">
+        <a href="/">
+            <section class="title">
+                <img class="mainImage" src="/images/PEN.png" alt="">
+                <h1>Pen is store</h1>
+            </section>
+        </a>
+
+        <nav>
+            <ul>
+                <li>
+                    <% if (session.userid) { %>
+                        <a href="/logout">Logout</a>
+                    
+                    <% } else { %>
+                        <a href="/login">Login</a>
+
+                    <% } %>  
+                </li>
+
+                <li>
+                    
+                    <% if (session.userid) { %>
+                        <a href="/settings">My profile</a>
+                    
+                    <% } else { %>
+                        <a href="/registration">Sign Up</a>
+
+                    <% } %>  
+                </li>
+                <li>
+                    <% if (session.userid) { %>
+                        <a href="/cart">Cart</a>
+                    
+                    <% } else { %>
+                        <a href="/login">Cart</a>
+
+                    <% } %> 
+                </li>
+            </ul>
+        </nav>
     </section>
-</a>
-
-<nav>
-    <ul>
-        <li>
-            <% if (session.userid) { %>
-                <a href="/logout">Logout</a>
-            
-            <% } else { %>
-                <a href="/login">Login</a>
-
-            <% } %>  
-        </li>
-
-        <li>
-            
-            <% if (session.userid) { %>
-                <a href="/settings">My profile</a>
-            
-            <% } else { %>
-                <a href="/registration">Sign Up</a>
-
-            <% } %>  
-        </li>
-        <li>
-            <% if (session.userid) { %>
-                <a href="/cart">Cart</a>
-            
-            <% } else { %>
-                <a href="/login">Cart</a>
-
-            <% } %> 
-        </li>
-    </ul>
-</nav>
+</header>
