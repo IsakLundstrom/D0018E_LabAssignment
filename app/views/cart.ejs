@@ -12,38 +12,44 @@
 
         <section class="mainContent">
             
-            <h1>Shop</h1>
+            <h1>Cart</h1>
 
-            <p> En fin hemsida, inte cursed </p>
-            <% if (session.userid) { %>
+            <table class="table">
+                <tr>
+                    <th>Prod image</th>
+                    <th>Prod name</th>
+                    <th>Amount to buy</th>
+                    <th>Price</th>
+                    <th>Remove From Cart</th>
 
-                <p>Inloggad</p>
 
-            <% } else { %>
-
-                <p>INTE inloggad</p>
-                
-            <% } %>
-
-            <section class="productContainer">
+                </tr>
                 <%
+                var totalAmount = 0;
                 if(cart.length != 0) {
+                    var totalAmount = 0;
                     cart.forEach(function(data){
+                        totalAmount = totalAmount + data.Price;
                 %>
-                    <a href="/product?id=<%=data.ProdID; %>">
-                        <section class="product">
-                            <p>CUST ID: <%=data.CustID; %></p>
-                            <p>ProdID: <%=data.ProdID; %></p>
-                            <p>AMOG: <%=data.AmountToBuy; %></p>
-                        </section>
-                    </a> 
+                <tr>
+                    <td><a href="/product?id=<%=data.ProdID; %>"><img class="cartPic" src="<%=data.Picture; %>" alt="Product pic"></a></td>
+                    <td><a href="/product?id=<%=data.ProdID; %>"><%=data.Pname; %></a></td>
+                    <td><%=data.AmountToBuy; %></td>
+                    <td><%=data.Price; %></td>
+                    <td><a href="/cart/removeFromCart?id=<%=data.ProdID; %>">X</a></td>
+                </tr>
                 <% });
+
+                
                 
                 } %>
-            </section>
+
+            </table>
+
+            <p>The total amount is <%=totalAmount%>$</p>
 
         </section>
-    
+        
     </main>
 
 </body>
