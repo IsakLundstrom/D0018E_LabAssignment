@@ -21,19 +21,21 @@
                 %>
                     <p></p>
             
-                    <section class="product">
+                    <section class="singleProd">
                         <section class="thumbnail">
-                            <h1><%=data.Pname; %></h1>
-                            <p><%=data.Rating; %></p>
-                            <img src="<%=data.Picture; %>" alt="awawdaw">
+                            <h2><%=data.Pname; %></h2>
+                            <h3><%=data.Rating; %></h3>
+                            <img class="prodPic" src="<%=data.Picture; %>" alt="awawdaw">
                         </section>
                         <section class="prodInfo">
-                            <p><%=data.Price; %></p>
-                            <p><%=data.Pdesc; %></p>
-                            <p><%=data.AmountInStock; %></p>
-                            <form action="/cart/addToCart?id=<%=data.ProdID; %>">
-                                <input type="submit" value="Add to cart" /> 
-                            </form>
+                            <h3><%=data.Price; %>$</h3>
+                            <h3><%=data.Pdesc; %></h3>
+                            <h3><%=data.AmountInStock; %></h3>
+                            <% if (session.userid) { %>
+                                <a class="addToCartButton" href="/cart/addToCart?id=<%=data.ProdID; %>"> Add to Cart</a> 
+                            <% } else { %>
+                                <a class="addToCartButton" href="/login"> Add to Cart</a>
+                            <% } %>  
                         </section>
                     </section>
 
