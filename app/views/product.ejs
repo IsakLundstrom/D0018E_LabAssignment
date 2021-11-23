@@ -22,15 +22,19 @@
                     <p></p>
             
                     <section class="product">
-                        <p><%=data.Pname; %></p>
-                        <p><%=data.Rating; %></p>
-                        <img src="<%=data.Picture; %>" alt="awawdaw">
-                        <p><%=data.Price; %></p>
-                        <p><%=data.Pdesc; %></p>
-                        <p><%=data.AmountInStock; %></p>
-                        <form action="/cart/addToCart?id=<%=data.ProdID; %>">
-                            <input type="submit" value="Add to cart" /> 
-                        </form>
+                        <section class="thumbnail">
+                            <h1><%=data.Pname; %></h1>
+                            <p><%=data.Rating; %></p>
+                            <img src="<%=data.Picture; %>" alt="awawdaw">
+                        </section>
+                        <section class="prodInfo">
+                            <p><%=data.Price; %></p>
+                            <p><%=data.Pdesc; %></p>
+                            <p><%=data.AmountInStock; %></p>
+                            <form action="/cart/addToCart?id=<%=data.ProdID; %>">
+                                <input type="submit" value="Add to cart" /> 
+                            </form>
+                        </section>
                     </section>
 
                 <% });

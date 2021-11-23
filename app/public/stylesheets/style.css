@@ -82,7 +82,17 @@ nav ul li a {
 }
 
 .product {
-  
+  background-color: red;
+  display: flex;
+  flex-flow: row;
+}
+
+.thumbnail {
+  background-color: aqua;
+}
+
+.prodInfo {
+  background-color: gold;
 }
 
 .productContainer a {
