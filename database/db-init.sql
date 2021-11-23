@@ -23,7 +23,7 @@ CREATE TABLE Admins (
 CREATE TABLE Products (
     ProdID INT NOT NULL AUTO_INCREMENT,
     Pname VARCHAR(32) NOT NULL,
-    Price INT NOT NULL,
+    Price DECIMAL(9,2) NOT NULL,
     Pdesc VARCHAR(32) NOT NULL,
     Picture VARCHAR(32) NOT NULL,
     Rating DECIMAL(1,1) DEFAULT 0,
@@ -32,7 +32,7 @@ CREATE TABLE Products (
 );
 
 CREATE TABLE Cart (
-    CustID INT NOT NULL,
+    UserID INT NOT NULL,
     ProdID INT NOT NULL,
     AmountToBuy INT NOT NULL,
     PRIMARY KEY(CustID, ProdID),
