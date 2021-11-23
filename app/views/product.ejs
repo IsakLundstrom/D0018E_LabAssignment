@@ -28,7 +28,7 @@
                         <p><%=data.Price; %></p>
                         <p><%=data.Pdesc; %></p>
                         <p><%=data.AmountInStock; %></p>
-                        <form action="/addToCart">
+                        <form action="/cart/addToCart?id=<%=data.ProdID; %>">
                             <input type="submit" value="Add to cart" /> 
                         </form>
                     </section>

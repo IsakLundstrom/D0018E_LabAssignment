@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <%- include('head.ejs'); %>
-    <title>Shop</title>
+    <title>Cart</title>
 </head>
 <body>
 
@@ -27,19 +27,14 @@
 
             <section class="productContainer">
                 <%
-                if(ProductTable.length != 0) {
-                    ProductTable.forEach(function(data){
+                if(cart.length != 0) {
+                    cart.forEach(function(data){
                 %>
                     <a href="/product?id=<%=data.ProdID; %>">
                         <section class="product">
-                            <p><%=data.Pname; %></p>
-                            <img src="<%=data.Picture; %>" alt="awawdaw">
-                            <p>Price: <%=data.Price; %></p>
-                            <p><%=data.Pdesc; %></p>
-                            <p>Amount in stock: <%=data.AmountInStock; %></p>
-                            <form action="/cart/addToCart?id=<%=data.ProdID; %>">
-                                <input type="submit" value="Add to cart" /> 
-                            </form>
+                            <p>CUST ID: <%=data.CustID; %></p>
+                            <p>ProdID: <%=data.ProdID; %></p>
+                            <p>AMOG: <%=data.AmountToBuy; %></p>
                         </section>
                     </a> 
                 <% });
