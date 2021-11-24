@@ -15,6 +15,7 @@ router.get('/', function(req, res, next) {
       if (err) throw err;
       res.render("settings", { UserInfo: result, session: req.session });
   });
+  
 });
 
 //Post/Change User info to the datbase
@@ -70,5 +71,7 @@ router.post('/addProduct', function(req, res){
     res.end();
   });
 });
+
+
 
 module.exports = router;

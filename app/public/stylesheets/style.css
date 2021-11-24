@@ -102,7 +102,8 @@ nav ul li a:hover {
 
 /* Home page */
 .productContainer {
-  background-color: rgba(255, 0, 0, 0.07);
+  background-color: #37371f21;
+  border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 10px;
@@ -122,11 +123,13 @@ nav ul li a:hover {
   /* background-color: brown; */
   transform: scale(0.995);
 }
-
+.prodImg{
+  height: 134px;
+  margin-top: 10px;
+}
 .productContainerA img{
   height: 134px;
   border-radius: 25px;
-  margin-top: 10px;
 }
 
 .productContainerA h3, p{
@@ -207,11 +210,13 @@ nav ul li a:hover {
 }
 
 .prodPic {
-  transition: 10s;
+  transition: 0.5s;
+  width: 268px;
+  border-radius: 1000px;
 }
 
-.prodPic:hover {
-  transform: rotate(360deg);
+.prodPic:active {
+  transform: scale(3);
 }
 
 .prodInfo {

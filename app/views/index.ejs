@@ -22,7 +22,9 @@
                     <section class="productContainerA" >
                         <a href="/product?id=<%=data.ProdID; %>" class="productA">
                             <section class="product">
-                                <img src="<%=data.Picture; %>" alt="<%=data.Pdesc; %>">
+                                <section class="prodImg">
+                                    <img src="<%=data.Picture; %>" alt="<%=data.Pname; %>">
+                                </section>
                                 <h3><%=data.Pname; %></h3>
                                 <p>Price: <%=data.Price; %>$</p>
                                 <!--  <p class="productDesc"><%=data.Pdesc; %></p> -->
