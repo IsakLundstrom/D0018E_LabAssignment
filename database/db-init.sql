@@ -24,7 +24,7 @@ CREATE TABLE Products (
     ProdID INT NOT NULL AUTO_INCREMENT,
     Pname VARCHAR(32) NOT NULL,
     Price DECIMAL(9,2) NOT NULL,
-    Pdesc VARCHAR(32) NOT NULL,
+    Pdesc TEXT NOT NULL,
     Picture VARCHAR(32) NOT NULL,
     Rating DECIMAL(1,1) DEFAULT 0,
     AmountInStock INT NOT NULL DEFAULT 0,
@@ -36,29 +36,29 @@ CREATE TABLE Cart (
     ProdID INT NOT NULL,
     AmountToBuy INT NOT NULL,
     PRIMARY KEY(UserID, ProdID),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID), 
-    FOREIGN KEY (ProdID) REFERENCES Products(ProdID)
+    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE, 
+    FOREIGN KEY (ProdID) REFERENCES Products(ProdID) ON DELETE CASCADE
 );
 
 CREATE TABLE Orders (
     OrderID INT NOT NULL,
     ProdID INT NOT NULL,
+    ProdName VARCHAR(32) NOT NULL,
     UserID INT NOT NULL,
+    UserName VARCHAR(32) NOT NULL,
+    Address VARCHAR(32) NOT NULL,
     Price DECIMAL(9,2) NOT NULL,
     AmountToBuy INT(4) NOT NULL,
     OrderStatus ENUM('ToOrder', 'Shipped', 'Completed'),
-    PRIMARY KEY(OrderID, ProdID),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID), 
-    FOREIGN KEY (ProdID) REFERENCES Products(ProdID)
+    PRIMARY KEY(OrderID, ProdID)
 );
 
 CREATE TABLE Reviews (
     ReviewID INT NOT NULL AUTO_INCREMENT,
     ProdID INT NOT NULL,
-    UserID INT NOT NULL,
+    UserName VARCHAR(32) NOT NULL,
     Rating INT(1) NOT NULL,
     Comment TEXT,
     PRIMARY KEY(ReviewID),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID), 
-    FOREIGN KEY (ProdID) REFERENCES Products(ProdID)
+    FOREIGN KEY (ProdID) REFERENCES Products(ProdID) ON DELETE CASCADE
 );
