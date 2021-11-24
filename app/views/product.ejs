@@ -8,18 +8,22 @@
 
     <%- include('header.ejs'); %>
 
+    
     <main>
+        
+        
 
         <section class="mainContent">
             
             <h1>Product</h1>
+            
 
             <section class="">
                 <%
                 if(product.length != 0) {
                     product.forEach(function(data){
                 %>
-                    <p></p>
+
             
                     <section class="singleProd">
                         <section class="thumbnail">
@@ -28,16 +32,35 @@
                             <img class="prodPic" src="<%=data.Picture; %>" alt="awawdaw">
                         </section>
                         <section class="prodInfo">
-                            <h3><%=data.Price; %>$</h3>
-                            <h3><%=data.Pdesc; %></h3>
-                            <h3><%=data.AmountInStock; %></h3>
+                            <section class="textInfo">
+                                <h2><%=data.Price; %>$</h2>
+                                <h3><%=data.Pdesc; %></h3>
+                                <h3>Stock: <%=data.AmountInStock; %></h3>
+                            </section>
+
+                            <input id="amountCart" type="number" max="99" min="1" value="1">
                             <% if (session.userid) { %>
-                                <a class="addToCartButton" href="/cart/addToCart?id=<%=data.ProdID; %>"> Add to Cart</a> 
+                                <a id="aADD" class="addToCartButton" href="/cart/addToCart?id=<%=data.ProdID; %>"> Add to Cart</a>
+                                
+
                             <% } else { %>
                                 <a class="addToCartButton" href="/login"> Add to Cart</a>
                             <% } %>  
                         </section>
                     </section>
+
+
+                    <script type="text/javascript">
+        
+                        var val = document.getElementById("amountCart").value;
+                        var a = document.getElementById("aADD");
+                        a.href = "/cart/addToCart?id=<%=data.ProdID; %>" + "&amount=" + val;
+                        document.getElementById("amountCart").addEventListener("click", function(){
+                            val = document.getElementById("amountCart").value;
+                            a.href = "/cart/addToCart?id=<%=data.ProdID; %>" + "&amount=" + val;
+                        });
+        
+                    </script>
 
                 <% });
                 
@@ -45,9 +68,14 @@
 
             </section>
 
+            
+
         </section>
+        
     
     </main>
+
+    
 
 </body>
 </html>

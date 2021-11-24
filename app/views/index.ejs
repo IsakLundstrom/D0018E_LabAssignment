@@ -22,14 +22,14 @@
                     <section class="productContainerA" >
                         <a href="/product?id=<%=data.ProdID; %>" class="productA">
                             <section class="product">
-                                <img src="<%=data.Picture; %>" alt="awawdaw">
+                                <img src="<%=data.Picture; %>" alt="<%=data.Pdesc; %>">
                                 <h3><%=data.Pname; %></h3>
                                 <p>Price: <%=data.Price; %>$</p>
-                                <p class="productDesc"><%=data.Pdesc; %></p>
+                                <!--  <p class="productDesc"><%=data.Pdesc; %></p> -->
                             </section>
                         </a> 
                         <% if (session.userid) { %>
-                            <a class="addToCartButton" href="/cart/addToCart?id=<%=data.ProdID; %>"> Add to Cart</a> 
+                            <a class="addToCartButton" href="/cart/addToCart?id=<%=data.ProdID; %>&amount=1"> Add to Cart</a> 
                         <% } else { %>
                             <a class="addToCartButton" href="/login"> Add to Cart</a>
                         <% } %>  

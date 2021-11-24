@@ -29,7 +29,7 @@
                 if(cart.length != 0) {
                     var totalAmount = 0;
                     cart.forEach(function(data){
-                        totalAmount = totalAmount + data.Price;
+                        totalAmount = totalAmount + data.Price * data.AmountToBuy;
                 %>
                 <tr>
                     <td><a href="/product?id=<%=data.ProdID; %>"><img class="cartPic" src="<%=data.Picture; %>" alt="Product pic"></a></td>

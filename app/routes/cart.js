@@ -19,24 +19,40 @@ router.get('/', function(req, res, next) {
 
 
 
-
-
-
-
 router.get('/addToCart', function(req, res, next) {
 
     var prodID = req.query.id;
+    var amount = req.query.amount;
     console.log("Cart prodID: " + prodID);
 
+    
+    var sql = `SELECT * FROM Cart WHERE UserID = ${req.session.userid} AND ProdID = ${prodID}`;
+    db.query(sql, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      else if(result.length === 0) {
+        var sql = `INSERT INTO Cart (UserID, ProdID, AmountToBuy) VALUES (${req.session.userid}, ${prodID}, ${amount})`; // JUST TEST SQL
+        db.query(sql, function (err, result) {
+            if (err) throw err;
+            
+            res.redirect("/cart")
+    
+        });
+      }
 
-    var sql = `INSERT INTO Cart (UserID, ProdID, AmountToBuy) VALUES (${req.session.userid}, ${prodID}, 1)`; // JUST TEST SQL
-      db.query(sql, function (err, result) {
-          if (err) throw err;
-          
-          res.redirect("/cart")
-  
-      });
+      else {
+        var sql = `UPDATE Cart SET AmountToBuy = AmountToBuy + ${amount} WHERE UserID = ${req.session.userid} AND ProdID = ${prodID}`; // JUST TEST SQL
+        db.query(sql, function (err, result) {
+            if (err) throw err;
+            
+            res.redirect("/cart")
+    
+        });
+      }
   });
+
+});
 
 
 
