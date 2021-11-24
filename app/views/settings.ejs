@@ -12,18 +12,7 @@
 
         <section class="mainContent">
             
-            <h1>Settings</h1>
-
-            <p> En fin hemsida, inte cursed </p>
-            <% if (session.userid) { %>
-
-                <p>Inloggad</p>
-
-            <% } else { %>
-
-                <p>INTE inloggad</p>
-                
-            <% } %>
+            <h1>Profile</h1>
 
             <%
                 if(UserInfo.length != 0) {
@@ -84,7 +73,13 @@
                 <% });
                 
                 } %>
-            </section>
+            </table>
+
+            <% if (session.isAdmin) { %>
+
+                <%- include('adminSettings.ejs'); %>
+
+            <% } %>
 
         </section>
     
