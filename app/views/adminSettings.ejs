@@ -1,1 +1,30 @@
 <p>ADMIN</p>
+
+<form class="settingsForm" action="/settings/addProduct" method="POST">
+    <section class="settingsInput">
+        <p>Product name</p>
+        <input type="text" name="pName" required autocomplete="off"/>
+    </section>
+    
+    <section class="settingsInput">
+        <p>Price</p>
+        <input type="tel" name="price" required autocomplete="off"/>
+    </section>
+    
+    <section class="settingsInput">
+        <p>Description</p>
+        <input type="text" name="pDesc" required autocomplete="off" />
+    </section>
+
+    <section class="settingsInput">
+        <p>Image</p>
+        <input type="file" name="picture" required autocomplete="off"/>
+    </section>
+
+    <section class="settingsInput">
+        <p>Amount</p>
+        <input type="number" name="amount" required autocomplete="off"/>
+    </section>
+    
+    <input type="submit" value="Update" /> 
+</form>

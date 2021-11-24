@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-//Post/Resister User info to the datbase
+//Post/Change User info to the datbase
 router.post('/settingsForm', function(req, res){  
   //Get data from the form  
   var fName = req.body.fName; 
@@ -46,6 +46,27 @@ router.get('/deleteAccount', function(req, res){
 
     req.session.destroy();
     res.redirect('/');
+    res.end();
+  });
+});
+
+router.post('/addProduct', function(req, res){  
+  //Get data from the form  
+  var pName = req.body.pName; 
+  var price = req.body.price;
+  var pDesc = req.body.pDesc;
+  var picture = req.body.picture;
+  var amount = req.body.amount;
+
+  console.log(picture);
+
+  var sql = `INSERT INTO Products (Pname, Price, Pdesc, Picture, AmountInStock) VALUES ('${pName}', '${price}', '${pDesc}', '/images/${picture}', '${amount}')`;
+    // QUERY DB
+    db.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted"); //For debug
+
+    res.redirect('/settings');
     res.end();
   });
 });
