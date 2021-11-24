@@ -195,29 +195,43 @@ nav ul li a:hover {
 
 /* Product page */
 .singleProd {
-  background-color: red;
   display: flex;
   flex-flow: row;
 }
 
 .thumbnail {
-  background-color: aqua;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 10px;
+  margin: 10px;
 }
 
 .prodPic {
-  border: 5px solid black;
-  transition: 0.5s;
+  transition: 10s;
 }
 
 .prodPic:hover {
-  transform: scale(0.99);
+  transform: rotate(360deg);
 }
 
 .prodInfo {
-  background-color: gold;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  margin: 10px;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+.textInfo {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 20px;
+  height: 100%;
+  width: 300px;
 }
 
 /* Cart */
