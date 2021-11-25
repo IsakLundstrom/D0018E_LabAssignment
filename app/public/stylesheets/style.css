@@ -156,18 +156,18 @@ nav ul li a:hover {
   background-color: #ce7d0c;
 }
 
-.product {
-  /* margin-bottom: 35px; */
-}
+/* .product {
+  margin-bottom: 35px;
+} */
 
 .productA {
   color: black;
   text-decoration: none;
 }
 
-.table {
+/* .table {
   background-color: red;
-}
+} */
 
 
 .regForm{
@@ -175,24 +175,8 @@ nav ul li a:hover {
   flex-flow: column;
 }
 
-/* SETTINGS PAGE */
-
-.settingsForm {
-  background-color: blue;
-  padding: 40px;
-}
-
-.settingsInput {
-  /* background-color: burlywood; */
-  text-align: left;
-}
-
-.settingsInput p {
-  margin-bottom: 2px;
-}
 
 /* Product page */
-
 .singleProd {
   display: flex;
   flex-flow: row;
@@ -236,22 +220,63 @@ nav ul li a:hover {
 }
 
 /* Cart */
-
 .cartPic{
   height: 67px;
 }
 
-/* Loginpage */
+.cartTable {
+  background-color: white;
+  border-radius: 10px;
+  border: 3px solid black;
+  padding: 0 10px;
+}
 
-.loginContent {
+.cartMargin {
+  margin-left: 100px;
+}
+
+/* .cartInfo {
+} */
+
+
+
+/* Loginpage / Registration / settings */
+
+.loginContent, .regContent, .settingsContent, .adminContent {
   margin-top: 40px;
   display: flex;
   align-items: center;
   flex-flow: column;
-  width: 30%;
+  /* width: 25%; */
   background-color: white;
   border-radius: 10px;
   border: 3px solid black;
+  padding: 0 10px;
+}
+
+.adminContent {
+  margin-bottom: 20px;
+}
+
+.adminTable {
+  margin-bottom: 20px;
+}
+
+.loginContent p, .regContent p, .settingsContent p, .adminContent p{
+  margin-left: 0;
+}
+
+.input {
+  margin-bottom: 5px;
+  height: 25px;
+  font-size: 15px;
+  display: block;
+}
+
+.input[type=submit]{
+  width: 100%;
+  cursor: pointer;
+  
 }
 
 #loginError{
@@ -260,22 +285,39 @@ nav ul li a:hover {
   font-weight: bolder;
 }
 
-/* Registration */
+/* SETTINGS PAGE */
 
-.regContent {
-  margin-top: 40px;
-  display: flex;
-  align-items: center;
-  flex-flow: column;
-  width: 20%;
-  background-color: white;
-  border-radius: 10px;
-  border: 3px solid black;
-
+.settingsContent{
+  padding: 10px 50px 15px 50px;
 }
 
-.input {
-  margin-bottom: 5px;
-  height: 25px;
-  font-size: 15px;
+/* .settingsForm {
+  background-color: blue;
+  padding: 40px;
+} */
+
+.settingsInput {
+  /* background-color: burlywood; */
+  text-align: left;
+}
+
+.settingsInput p {
+  margin-top: 3px;
+  margin-bottom: 1px;
+}
+
+.deleteAccount{
+  color: black;
+  text-decoration: none;
+  background-color: red;
+  padding: 15px 0;
+  border-radius: 7px;
+  margin-top: 12px;
+  display: block;
+  width: 100%;
+}
+
+.deleteAccount:hover {
+  transition: 0.2s;
+  background-color: rgb(179, 0, 0);
 }

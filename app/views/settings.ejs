@@ -14,39 +14,39 @@
             
             <h1>Profile</h1>
 
-            <%
-                if(UserInfo.length != 0) {
-                    UserInfo.forEach(function(data){
-            %>
-            
-            <form class="settingsForm" action="/settings/settingsForm" method="POST">
-                <section class="settingsInput">
-                    <p>First name</p>
-                    <input type="text" name="fName" value="<%=data.Fname; %>" required autocomplete="off"/>
-                </section>
+            <section class="settingsContent">
+                <%
+                    if(UserInfo.length != 0) {
+                        UserInfo.forEach(function(data){
+                %>
                 
-                <section class="settingsInput">
-                    <p>Last name</p>
-                    <input type="text" name="lName" value="<%=data.Lname; %>" required autocomplete="off"/>
-                </section>
+                <form class="settingsForm" action="/settings/settingsForm" method="POST">
+                    <section class="settingsInput">
+                        <p>First name</p>
+                        <input class="input" type="text" name="fName" value="<%=data.Fname; %>" required autocomplete="off"/>
+                    </section>
                 
-                <section class="settingsInput">
-                    <p>Password</p>
-                    <input type="password" name="password" value="<%=data.HPassword; %>" required autocomplete="off" />
-                </section>
-
-                <section class="settingsInput">
-                    <p>Address</p>
-                    <input type="text" name="address" value="<%=data.HomeAddress; %>" required autocomplete="off"/>
-                </section>
+                    <section class="settingsInput">
+                        <p>Last name</p>
+                        <input class="input" type="text" name="lName" value="<%=data.Lname; %>" required autocomplete="off"/>
+                    </section>
                 
-                <input type="submit" value="Update" /> 
-            </form>
-
-            <% });
+                    <section class="settingsInput">
+                        <p>Password</p>
+                        <input class="input" type="password" name="password" value="<%=data.HPassword; %>" required autocomplete="off" />
+                    </section>
+                    <section class="settingsInput">
+                        <p>Address</p>
+                        <input class="input" type="text" name="address" value="<%=data.HomeAddress; %>" required autocomplete="off"/>
+                    </section>
                 
-            } %>
-            <a href="/settings/deleteAccount">Delete Account</a>
+                    <input class="input" type="submit" value="Update" />
+                </form>
+                <% });
+                
+                } %>
+                <a class="deleteAccount" href="/settings/deleteAccount">Delete Account</a>
+            </section>
             <% if (session.isAdmin) { %>
 
                 <%- include('adminSettings.ejs'); %>
