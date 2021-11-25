@@ -40,7 +40,7 @@
 
                             <input id="amountCart" type="number" max="99" min="1" value="1">
                             <% if (session.userid) { %>
-                                <a id="aADD" class="addToCartButton" href="/cart/addToCart?id=<%=data.ProdID; %>"> Add to Cart</a>
+                                <a id="aADD" class="addToCartButton" href="#"> Add to Cart</a>
                             <% } 
                             else { %>
                                 <a class="addToCartButton" href="/login?login=false"> Add to Cart</a>
@@ -56,7 +56,7 @@
                         a.href = "/cart/addToCart?id=<%=data.ProdID; %>" + "&amount=" + val;
                         document.getElementById("amountCart").addEventListener("click", function(){
                             val = document.getElementById("amountCart").value;
-                            a.href = "/cart/addToCart?id=<%=data.ProdID; %>" + "&amount=" + val;
+                            a.href = "/cart/addToCart?id=<%=data.ProdID; %>" + "&amount=" + val + "&from=product";
                         });
         
                     </script>
