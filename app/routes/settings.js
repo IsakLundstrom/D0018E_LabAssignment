@@ -10,10 +10,23 @@ router.get('/', function(req, res, next) {
       return;
   }
 
-  var sql = `SELECT * FROM Users WHERE UserID=${req.session.userid}`;
-  db.query(sql, function (err, result) {
+  var sql1 = `SELECT * FROM Users WHERE UserID=${req.session.userid}`;
+  db.query(sql1, function (err, result1) {
+    if (err) throw err;
+
+    var sql2 = `SELECT * FROM Products;`;
+    db.query(sql2, function (err, result2) {
       if (err) throw err;
-      res.render("settings", { UserInfo: result, session: req.session });
+
+      var sql3 = `SELECT * FROM Users WHERE UserID != ${req.session.userid};`;
+      db.query(sql3, function (err, result3) {
+        if (err) throw err;
+
+        res.render("settings", { UserInfo: result1, Products: result2, Users: result3, session: req.session });
+      });
+
+    });
+    
   });
   
 });
@@ -52,6 +65,12 @@ router.get('/deleteAccount', function(req, res){
 });
 
 router.post('/addProduct', function(req, res){  
+
+  if(!req.session.isAdmin){
+    res.redirect('/');
+    return;
+  }
+
   //Get data from the form  
   var pName = req.body.pName; 
   var price = req.body.price;
@@ -72,6 +91,42 @@ router.post('/addProduct', function(req, res){
   });
 });
 
+router.get('/removeProduct', function(req, res, next) {
+
+  if(!req.session.isAdmin){
+    res.redirect('/');
+    return;
+  }
+
+  var prodID = req.query.id;
+
+  var sql = `DELETE FROM Products WHERE ProdID = ${prodID}`;
+    db.query(sql, function (err, result) {
+      if (err) throw err;
+      
+      res.redirect("/settings");
+      res.end();
+    });
+});
+
+
+router.get('/removeUser', function(req, res, next) {
+
+  if(!req.session.isAdmin){
+    res.redirect('/');
+    return;
+  }
+
+  var usersID = req.query.id;
+
+  var sql = `DELETE FROM Users WHERE UserID = ${usersID}`;
+    db.query(sql, function (err, result) {
+      if (err) throw err;
+      
+      res.redirect("/settings");
+      res.end();
+    });
+});
 
 
 module.exports = router;

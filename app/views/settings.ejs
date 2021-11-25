@@ -46,35 +46,7 @@
             <% });
                 
             } %>
-
-
-            <table class="table">
-                <tr>
-                    <th>UserID</th>
-                    <th>Name</th>
-                    <th>Last name</th>
-                    <th>Password</th>
-                    <th>Mail</th>
-                    <th>Address</th>
-                </tr>
-                <%
-                if(UserInfo.length != 0) {
-                    UserInfo.forEach(function(data){
-                %>
-
-                <tr>
-                    <td><%=data.UserID; %></td>
-                    <td><%=data.Fname; %></td>
-                    <td><%=data.Lname; %></td>
-                    <td><%=data.HPassword; %></td>
-                    <td><%=data.Email; %></td>
-                    <td><%=data.HomeAddress; %></td>
-                </tr>
-                <% });
-                
-                } %>
-            </table>
-            <a href="/settings/deleteAccount">Delete</a>
+            <a href="/settings/deleteAccount">Delete Account</a>
             <% if (session.isAdmin) { %>
 
                 <%- include('adminSettings.ejs'); %>
