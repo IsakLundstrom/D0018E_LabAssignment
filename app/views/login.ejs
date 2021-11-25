@@ -10,30 +10,40 @@
 
     <main>
 
-        <section class="mainContent">
+        <section class="loginContent">
 
             <h1>Login</h1>
 
-            <p id="loginInfo"></p>
+            
 
             <!-- Shows login error -->
-            <script>
-            if (window.location.href == "http://130.240.200.33:3000/login?login=false") {
-                document.getElementById("loginInfo").innerHTML = "Account with this email and password does not exist";
-            }    
-            </script>
+            
             
             <form class="loginForm" action="/login/loginForm" method="POST">
-                <input type="email" name="mail" placeholder="Mail" required /> 
-                <input type="password" name="password" placeholder="Password" required autocomplete="on" /> 
-                <input type="submit" value="Submit" /> 
+                <input class="input" type="email" name="mail" placeholder="Mail" required /> 
+                <input class="input" type="password" name="password" placeholder="Password" required autocomplete="on" /> 
+                <input class="input" type="submit" value="Submit" /> 
             </form> 
-            <p>Not signed up yet? Click <a href="/registration"> here</a> to sign up!</p>
 
+            <p>Not signed up yet? Click <a href="/registration"> here</a> to sign up!</p>
+            <p id="loginError"></p>
 
         </section>
-    
+        
     </main>
 
+
+
+    <script>
+        if (window.location.href == "http://130.240.200.33:3000/login?login=notExist") {
+            document.getElementById("loginError").innerHTML = "Account with this email and password does not exist";
+        }
+        else if (window.location.href == "http://130.240.200.33:3000/login?login=false") {
+            document.getElementById("loginError").innerHTML = "Please login or sign up before proceeding";
+        }
+        else {
+            document.getElementById("loginError").style.display="none";
+        }   
+    </script>
 </body>
 </html>

@@ -57,7 +57,7 @@ router.post('/loginForm', function(req, res){
       //Login falied, reload page
       else {
         console.log("did not login");
-        var url = encodeURIComponent('false');
+        var url = encodeURIComponent('notExist');
         res.redirect('/login?login=' + url);
       }
       res.end();

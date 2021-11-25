@@ -33,7 +33,7 @@
                         <% if (session.userid) { %>
                             <a class="addToCartButton" href="/cart/addToCart?id=<%=data.ProdID; %>&amount=1"> Add to Cart</a> 
                         <% } else { %>
-                            <a class="addToCartButton" href="/login"> Add to Cart</a>
+                            <a class="addToCartButton" href="/login?login=false"> Add to Cart</a>
                         <% } %>  
                         
                     </section>

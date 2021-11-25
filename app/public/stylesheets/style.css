@@ -97,7 +97,7 @@ nav ul li a {
   line-height: 40px; /* FULFIX */
 }
 nav ul li a:hover {
-  transform: scale(0.995);
+  transform: scale(0.99);
 }
 
 /* Home page */
@@ -165,9 +165,6 @@ nav ul li a:hover {
   text-decoration: none;
 }
 
-
-
-
 .table {
   background-color: red;
 }
@@ -177,7 +174,6 @@ nav ul li a:hover {
   display: flex;
   flex-flow: column;
 }
-
 
 /* SETTINGS PAGE */
 
@@ -195,8 +191,8 @@ nav ul li a:hover {
   margin-bottom: 2px;
 }
 
-
 /* Product page */
+
 .singleProd {
   display: flex;
   flex-flow: row;
@@ -240,6 +236,46 @@ nav ul li a:hover {
 }
 
 /* Cart */
+
 .cartPic{
   height: 67px;
+}
+
+/* Loginpage */
+
+.loginContent {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  width: 30%;
+  background-color: white;
+  border-radius: 10px;
+  border: 3px solid black;
+}
+
+#loginError{
+  margin-top: 0;
+  color: red;
+  font-weight: bolder;
+}
+
+/* Registration */
+
+.regContent {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  width: 20%;
+  background-color: white;
+  border-radius: 10px;
+  border: 3px solid black;
+
+}
+
+.input {
+  margin-bottom: 5px;
+  height: 25px;
+  font-size: 15px;
 }

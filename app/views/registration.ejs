@@ -10,45 +10,20 @@
 
     <main>
 
-        <section class="mainContent">
+        <section class="regContent">
 
             <h1>Sign up</h1>
             
             <form class="regForm" action="registration/usersForm" method="POST">
-                <input type="text" name="fName" placeholder="Name" required />
-                <input type="text" name="lName" placeholder="Last name" required /> 
-                <input type="password" name="password" placeholder="Password" required autocomplete="off" /> 
-                <input type="email" name="mail" placeholder="Mail" required /> 
-                <input type="text" name="address" placeholder="Address" required /> 
-                <input type="submit" value="Submit" /> 
+                <input class="input" type="text" name="fName" placeholder="Name" required />
+                <input class="input" type="text" name="lName" placeholder="Last name" required /> 
+                <input class="input" type="password" name="password" placeholder="Password" required autocomplete="off" /> 
+                <input class="input" type="email" name="mail" placeholder="Mail" required /> 
+                <input class="input" type="text" name="address" placeholder="Address" required /> 
+                <input class="input" type="submit" value="Submit" /> 
             </form> 
 
-            <table class="table">
-                <tr>
-                    <th>UserID</th>
-                    <th>Name</th>
-                    <th>Last name</th>
-                    <th>Password</th>
-                    <th>Mail</th>
-                    <th>Address</th>
-                </tr>
-                <%
-                if(UsersTable.length != 0) {
-                    UsersTable.forEach(function(data){
-                %>
-                <tr>
-                    <td><%=data.UserID; %></td>
-                    <td><%=data.Fname; %></td>
-                    <td><%=data.Lname; %></td>
-                    <td><%=data.HPassword; %></td>
-                    <td><%=data.Email; %></td>
-                    <td><%=data.HomeAddress; %></td>
-                </tr>
-                <% });
-                
-                } %>
-
-            </table>
+            <p>Already signed up? Click <a href="/login"> here</a> to login!</p>
 
         </section>
     
