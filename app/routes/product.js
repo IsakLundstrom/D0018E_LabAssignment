@@ -31,7 +31,6 @@ router.post('/makeReview', function(req, res, next) {
   var comment = req.body.comment;
   var userName;
   
-
   var sql1 = `SELECT Fname FROM Users WHERE UserID = ${userID}`;
     db.query(sql1, function (err, result) {
         if (err) throw err;
@@ -45,10 +44,26 @@ router.post('/makeReview', function(req, res, next) {
       res.redirect("/product?id=" +prodID);
       res.end;
     });
+});
 
-  
+router.get('/removeReview', function(req, res, next) {
+  if(!req.session.isAdmin){
+    res.redirect('/');
+    return;
+  }
 
+  var revID = req.query.revID;
+  var prodID = req.query.prodID;
   
+  var sql1 = `DELETE FROM Reviews WHERE ReviewID = ${revID}`;
+    db.query(sql1, function (err, result) {
+        if (err) throw err;
+
+        console.log("Review with revID = " + revID + " has been deleted");
+        res.redirect("/product?id=" +prodID);
+        res.end();
+    });
+
 });
 
 

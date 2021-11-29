@@ -77,7 +77,12 @@
                             <section class="oneReview container">
                                 <p><%=reviewData.Comment; %></p>
                                 <p>User rated: <%=reviewData.Rating; %>/5</p>
-                                <p>Review made by: <%=reviewData.UserName; %></p> 
+                                <p>Review made by: <%=reviewData.UserName; %></p>
+                                <% if (session.isAdmin) { %>
+                                    <a class="remove" href="/product/removeReview?revID=<%=reviewData.ReviewID; %>&prodID=<%=data.ProdID; %>">X</a> 
+                                <%} %> 
+
+                                
                             </section>
 
                             
