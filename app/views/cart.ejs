@@ -14,12 +14,12 @@
             
             <h1>Cart</h1>
 
-            <table class="cartTable">
+            <table class="cartTable container">
                 <tr>
-                    <th>Image |</th>
-                    <th class="cartMargin">Product |</th>
-                    <th class="cartMargin">Amount |</th>
-                    <th class="cartMargin">Price |</th>
+                    <th>Image | </th>
+                    <th class="cartMargin">Product | </th>
+                    <th class="cartMargin">Amount | </th>
+                    <th class="cartMargin">Price | </th>
                     <th class="cartMargin">Remove</th>
                 </tr>
                 <%
@@ -34,7 +34,7 @@
                     <td><a href="/product?id=<%=data.ProdID; %>"><%=data.Pname; %></a></td>
                     <td><%=data.AmountToBuy; %></td>
                     <td><%=data.Price; %></td>
-                    <td><a href="/cart/removeFromCart?id=<%=data.ProdID; %>">X</a></td>
+                    <td><a class="remove" href="/cart/removeFromCart?id=<%=data.ProdID; %>">X</a></td>
                 </tr>
                 <% });
 

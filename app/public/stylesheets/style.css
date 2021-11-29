@@ -11,6 +11,23 @@ body {
   padding: 0;
 }
 
+p{
+  margin: 0;
+}
+
+.input {
+  margin-bottom: 5px;
+  height: 25px;
+  font-size: 15px;
+  display: block;
+}
+
+.input[type=submit]{
+  width: 100%;
+  cursor: pointer;
+  
+}
+
 /* Main */
 main {
    display: flex;
@@ -27,6 +44,13 @@ main {
 .mainContent h1{
   text-align: left;
   font-size: 50px;;
+}
+
+.container{
+  background-color: white;
+  border: 2px solid #37371F;
+  border-radius: 10px;
+  margin: 10px;
 }
 
 /* Header */
@@ -51,6 +75,7 @@ header {
 .title {
   display: flex;
   flex-flow: row;
+  
 }
 
 .title h1{
@@ -112,9 +137,7 @@ nav ul li a:hover {
 }
 
 .productContainerA {
-  border: 2px solid #37371F;
-  border-radius: 10px;
-  background-color: white;
+  margin: 2px;
   transition: 0.2s;
   /* padding-bottom: 12px; */
 }
@@ -132,13 +155,9 @@ nav ul li a:hover {
   border-radius: 25px;
 }
 
-.productContainerA h3, p{
+.productContainerA h3, .productContainerA p{
   text-align: left;
   margin-left: 10px;
-}
-
-.productDesc{
-  font-size: 70%;
 }
 
 .addToCartButton {
@@ -183,16 +202,28 @@ nav ul li a:hover {
 }
 
 .thumbnail {
-  background-color: white;
-  border: 3px solid black;
-  border-radius: 10px;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  /* border: 3px; */
   margin: 10px;
+}
+
+.thumbnail h2, .thumbnail p{
+  align-self: left;
+  margin-left: 20px;
+}
+
+.prodPicContainer{
+  width: 268px;
+  height: 268px;
 }
 
 .prodPic {
   transition: 0.5s;
   width: 268px;
-  border-radius: 1000px;
+  height: 268px;
+  border-radius: 50%;
 }
 
 .prodPic:active {
@@ -204,10 +235,23 @@ nav ul li a:hover {
   flex-flow: column;
   justify-content: space-between;
   margin: 10px;
-  background-color: white;
-  border: 3px solid black;
-  border-radius: 10px;
+  /* border: 3px; */
 }
+
+.prodPrice{
+  font-size: 150%;
+}
+
+.prodDesc{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.prodDescText{
+  font-size: 80%;
+}
+
 
 .textInfo {
   display: flex;
@@ -219,15 +263,40 @@ nav ul li a:hover {
   width: 300px;
 }
 
+.prodAmountInfo{
+  display: flex;
+  flex-flow: row;
+  margin-left: 20px;
+}
+
+.prodAmoutText{
+  font-size: 70%;
+  margin-top: 8px;
+  margin-left: 10px;
+}
+
+#amountCart{
+  width: 10%;
+}
+
+.review{
+  padding: 20px;
+}
+
+.comment{
+  width: 590px;
+  height: 100px;
+  resize: none;
+}
+
+
+
 /* Cart */
 .cartPic{
   height: 67px;
 }
 
 .cartTable {
-  background-color: white;
-  border-radius: 10px;
-  border: 3px solid black;
   padding: 0 10px;
 }
 
@@ -235,23 +304,22 @@ nav ul li a:hover {
   margin-left: 100px;
 }
 
-/* .cartInfo {
-} */
+.remove{
+  text-decoration: none;
+  color: red;
+}
 
 
 
 /* Loginpage / Registration / settings */
 
 .loginContent, .regContent, .settingsContent, .adminContent {
-  margin-top: 40px;
+  /* margin-top: 20px; */
   display: flex;
   align-items: center;
   flex-flow: column;
   /* width: 25%; */
-  background-color: white;
-  border-radius: 10px;
-  border: 3px solid black;
-  padding: 0 10px;
+  padding: 0 10px 10px 10px;
 }
 
 .adminContent {
@@ -266,18 +334,6 @@ nav ul li a:hover {
   margin-left: 0;
 }
 
-.input {
-  margin-bottom: 5px;
-  height: 25px;
-  font-size: 15px;
-  display: block;
-}
-
-.input[type=submit]{
-  width: 100%;
-  cursor: pointer;
-  
-}
 
 #loginError{
   margin-top: 0;

@@ -1,8 +1,8 @@
-<h1>ADMIN SETTINGS</h1>
+<h2>ADMIN SETTINGS</h2>
 
 <section class="allAdminSettingsContent">
     
-    <section class="adminContent">
+    <section class="adminContent container">
         <form class="productsForm" action="/settings/addProduct" method="POST">
             <h2 class="settingsInput">Add a product</h2>
             <section class="settingsInput">
@@ -35,28 +35,28 @@
         </form>
     </section>
     
-    <section class="adminContent">
+    <section class="adminContent container">
         <table class="table">
             <h2 class="settingsInput">Remove a product</h2>
             <tr>
-                <th>Prod image</th>
-                <th>Prod name</th>
-                <th>Amount in Stock</th>
-                <th>Price</th>
+                <th>ProdID | </th>
+                <th>Prod image | </th>
+                <th>Prod name | </th>
+                <th>Amount in Stock | </th>
+                <th>Price | </th>
                 <th>Remove</th>
-        
-        
             </tr>
             <%
             if(Products.length != 0) {
                 Products.forEach(function(data){
             %>
             <tr>
+                <td><%=data.ProdID; %></td>
                 <td><a href="/product?id=<%=data.ProdID; %>"><img class="cartPic" src="<%=data.Picture; %>" alt="Product pic"></a></td>
                 <td><a href="/product?id=<%=data.ProdID; %>"><%=data.Pname; %></a></td>
                 <td><%=data.AmountInStock; %></td>
                 <td><%=data.Price; %></td>
-                <td><a href="/settings/removeProduct?id=<%=data.ProdID; %>">X</a></td>
+                <td><a class="remove" href="/settings/removeProduct?id=<%=data.ProdID; %>">X</a></td>
             </tr>
             <% });
         
@@ -64,16 +64,16 @@
         </table>
     </section>
     
-    <section class="adminContent">
+    <section class="adminContent container">
         <table class="Table">
             <h2 class="settingsInput">View/remove users</h2>
             <tr class="manageUsers">
-                <th>UserID</th>
-                <th>Name</th>
-                <th>Last name</th>
-                <th>Password</th>
-                <th>Mail</th>
-                <th>Address</th>
+                <th>UserID | </th>
+                <th>Name | </th>
+                <th>Last name | </th>
+                <th>Password | </th>
+                <th>Mail | </th>
+                <th>Address | </th>
                 <th>Remove</th>
             </tr>
             <%
@@ -87,7 +87,7 @@
                 <td><%=data.HPassword; %></td>
                 <td><%=data.Email; %></td>
                 <td><%=data.HomeAddress; %></td>
-                <td><a href="/settings/removeUser?id=<%=data.UserID; %>">X</a></td>
+                <td><a class="remove" href="/settings/removeUser?id=<%=data.UserID; %>">X</a></td>
             </tr>
             <% });
         
