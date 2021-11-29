@@ -91,6 +91,43 @@ router.post('/addProduct', function(req, res){
   });
 });
 
+//Post/Change User info to the datbase
+router.post('/updateProduct', function(req, res){  
+  //Get data from the form  
+  var pID = req.body.pID; 
+  var pName = req.body.pName; 
+  var price = req.body.price;
+  var pDesc = req.body.pDesc;
+  var picture = req.body.picture;
+  var amount = req.body.amount;
+
+  var sql = `SELECT * FROM Products WHERE ProdID = ${pID};`;
+  db.query(sql, function (err, result) {
+    if (err) throw err;
+
+    if (result.length > 0) {
+
+      //Set variables to previous if not changed
+      if (pName == undefined) pName = result[0].Pname;
+      if (price == '') price = result[0].Price;
+      if (pDesc == '') pDesc = result[0].Pdesc;
+      if (picture == '') picture = result[0].Picture;
+      if (amount == '') amount = 0;
+
+      sql = `UPDATE Products SET Pname = '${pName}', Price = '${price}', Pdesc = '${pDesc}', Picture = '${picture}', AmountInStock = ${result[0].AmountInStock} + ${amount} WHERE ProdID = ${pID}`;
+      // QUERY DB
+      db.query(sql, function (err, result2) {
+        if (err) throw err;
+        console.log("Record updated"); //For debug
+  
+        
+      });
+    }
+    res.redirect('/settings');
+    res.end();
+  });
+});
+
 router.get('/removeProduct', function(req, res, next) {
 
   if(!req.session.isAdmin){

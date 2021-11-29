@@ -16,10 +16,12 @@ p{
 }
 
 .input {
+  box-sizing: border-box;
   margin-bottom: 5px;
   height: 25px;
   font-size: 15px;
   display: block;
+  width: 100%;
 }
 
 .input[type=submit]{
@@ -250,6 +252,7 @@ nav ul li a:hover {
 
 .prodDescText{
   font-size: 80%;
+  text-align: left;
 }
 
 
@@ -276,7 +279,7 @@ nav ul li a:hover {
 }
 
 #amountCart{
-  width: 10%;
+  width: 13%;
 }
 
 .review{
@@ -389,4 +392,12 @@ nav ul li a:hover {
 .adminAddUpdateProd{
   display: flex;
   flex-flow: row;
+}
+
+.productsForm{
+  margin: 0 20px;
+}
+
+.desc{
+  height: 75px;
 }

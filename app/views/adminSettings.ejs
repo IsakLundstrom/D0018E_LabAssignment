@@ -47,7 +47,7 @@
             
                 <section class="settingsInput">
                     <p>Description</p>
-                    <input class="input" type="text" name="pDesc" required autocomplete="off" />
+                    <textarea class="desc input" type="text" name="pDesc" required autocomplete="off" /></textarea>
                 </section>
             
                 <section class="settingsInput">
@@ -65,9 +65,15 @@
             </form>
             <form class="productsForm" action="/settings/updateProduct" method="POST">
                 <h2 class="settingsInput">Update a product</h2>
+                
                 <section class="settingsInput">
                     <p>Product ID</p>
-                    <input class="input" type="number" name="" required autocomplete="off"/>
+                    <input class="input" type="number" name="pID" required autocomplete="off"/>
+                </section>
+
+                <section class="settingsInput">
+                    <p>New Product Name</p>
+                    <input class="input" type="text" name="pname" autocomplete="off"/>
                 </section>
             
                 <section class="settingsInput">
@@ -77,7 +83,7 @@
             
                 <section class="settingsInput">
                     <p>New Description</p>
-                    <input class="input" type="text" name="pDesc" autocomplete="off" />
+                    <textarea class="desc input" type="text" name="pDesc" autocomplete="off" /></textarea>
                 </section>
             
                 <section class="settingsInput">
