@@ -46,6 +46,17 @@
                                 <a class="addToCartButton" href="/login?login=false"> Add to Cart</a>
                             <% } %>  
                         </section>
+
+                        <section class="review">
+                            <form action="/product/makeReview" method="POST">
+                                <input type="number" name="rating" min="0" max="5" placeholder="rating">
+                                <input type="text" name="comment" autocomplete="off" placeholder="comment">
+                                <input type="hidden" name="id" value="<%=data.ProdID; %>" >
+                                <input type="submit" value="Submit">
+                            </form>
+                            
+                            
+                        </section>
                     </section>
 
 

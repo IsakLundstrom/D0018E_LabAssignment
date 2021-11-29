@@ -17,4 +17,35 @@ router.get('/', function(req, res, next) {
     });
 });
 
+
+// Reviews
+router.post('/makeReview', function(req, res, next) {
+
+  var prodID = req.body.id;
+  var userID = req.session.userid;
+  var rating = req.body.rating;
+  var comment = req.body.comment;
+  var userName;
+  
+
+  var sql1 = `SELECT Fname FROM Users WHERE UserID = ${userID}`;
+    db.query(sql1, function (err, result) {
+        if (err) throw err;
+        userName = result[0].Fname;
+
+        var sql2 = `INSERT INTO Reviews (ProdID, UserName, Rating, Comment) VALUES ('${prodID}', '${userName}', ${rating}, '${comment}')`;
+        db.query(sql2, function (err, result) {
+            if (err) throw err;
+            console.log("Review prod = " + prodID + " RATING = " + rating + " comment = " + comment);
+        });
+      res.redirect("/product?id=" +prodID);
+      res.end;
+    });
+
+  
+
+  
+});
+
+
 module.exports = router;
