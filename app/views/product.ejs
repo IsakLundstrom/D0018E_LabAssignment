@@ -26,44 +26,78 @@
 
             
                     <section class="singleProd">
-                        <section class="thumbnail">
+                        <section class="thumbnail container">
                             <h2><%=data.Pname; %></h2>
-                            <h3><%=data.Rating; %></h3>
-                            <img class="prodPic" src="<%=data.Picture; %>" alt="awawdaw">
+                            <p>Rating: <%=data.Rating; %>/5</p>
+                            <div class="prodPicContainer">
+                                <img class="prodPic" src="<%=data.Picture; %>" alt="awawdaw">
+                            </div>
                         </section>
-                        <section class="prodInfo">
+                        <section class="prodInfo container">
                             <section class="textInfo">
-                                <h2><%=data.Price; %>$</h2>
-                                <h3><%=data.Pdesc; %></h3>
-                                <h3>Stock: <%=data.AmountInStock; %></h3>
+                                <p class="prodPrice"><%=data.Price; %>$</h2>
+                                <div class="prodDesc">
+                                    <p class="prodDescHead">Description:</p>
+                                    <p class="prodDescText"><%=data.Pdesc; %></p>
+                                </div>
                             </section>
 
-                            <input class="input" id="amountCart" type="number" max="99" min="1" value="1">
+                            <div class="prodAmountInfo">
+                                <input class="input" id="amountCart" type="number" max="99" min="1" value="1">
+                                <p class="prodAmoutText">Left in stock: <%=data.AmountInStock; %></p>
+                            </div>
                             <% if (session.userid) { %>
-                                <a id="aADD" class="addToCartButton" href="#"> Add to Cart</a>
+                                <a id="addToCartButton" class="addToCartButton" href="#"> Add to Cart</a>
                             <% } 
                             else { %>
                                 <a class="addToCartButton" href="/login?login=false"> Add to Cart</a>
                             <% } %>  
                         </section>
 
-                        <section class="review">
-                            <form action="/product/makeReview" method="POST">
-                                <input type="number" name="rating" min="0" max="5" placeholder="rating">
-                                <input type="text" name="comment" autocomplete="off" placeholder="comment">
-                                <input type="hidden" name="id" value="<%=data.ProdID; %>" >
-                                <input type="submit" value="Submit">
-                            </form>
+                        
+                    </section>
+
+                    
+                    <section class="review container">
+                        <h2>Make your own review</h2>
+                        <form action="/product/makeReview" method="POST">
+                            <input class="input" type="number" name="rating" min="0" max="5" placeholder="rating">
+                            <textarea class="comment input" type="text" name="comment" autocomplete="off" placeholder="comment"></textarea>
+                            <input type="hidden" name="id" value="<%=data.ProdID; %>" >
+                            <input class="input" type="submit" value="Submit">
+                        </form>
+
+                        <section class="reviewShower">
+                            <h2>User reviews</h2>
+                            <%
+                            if(review.length != 0) {
+                                review.forEach(function(reviewData){
+                            %>
+
+                            <section class="oneReview container">
+                                <p><%=reviewData.Comment; %></p>
+                                <p>User rated: <%=reviewData.Rating; %>/5</p>
+                                <p>Review made by: <%=reviewData.UserName; %></p> 
+                            </section>
+
                             
+                            <% });
+                
+                            } %> 
+
+                            <% if (review.length == 0) { %>
+                                <h3>No one has reviewed this product yet 🤦‍♂️</h3>
+                            <%} %> 
                             
                         </section>
                     </section>
 
+                    
 
                     <script type="text/javascript">
         
                         var val = document.getElementById("amountCart").value;
-                        var a = document.getElementById("aADD");
+                        var a = document.getElementById("addToCartButton");
                         a.href = "/cart/addToCart?id=<%=data.ProdID; %>" + "&amount=" + val;
                         document.getElementById("amountCart").addEventListener("click", function(){
                             val = document.getElementById("amountCart").value;

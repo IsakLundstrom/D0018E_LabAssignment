@@ -8,12 +8,16 @@ router.get('/', function(req, res, next) {
   var prodID = req.query.id;
   console.log("PRODUCT ID = " + prodID);
 
-  var sql = `SELECT * FROM Products WHERE ProdID = '${prodID}'`;
-    db.query(sql, function (err, result) {
+  var sql1 = `SELECT * FROM Products WHERE ProdID = '${prodID}'`;
+    db.query(sql1, function (err, result1) {
         if (err) throw err;
-        
-        res.render("product", { product: result, session: req.session });
 
+        var sql2 = `SELECT * FROM Reviews WHERE ProdID = '${prodID}'`;
+        db.query(sql2, function (err, result2) {
+          if (err) throw err;
+          
+          res.render("product", { product: result1, review: result2 ,session: req.session });
+      });
     });
 });
 

@@ -289,6 +289,14 @@ nav ul li a:hover {
   resize: none;
 }
 
+.oneReview {
+  max-width: 550px;
+}
+
+.oneReview p{
+  margin: 4px;
+}
+
 
 
 /* Cart */
@@ -376,4 +384,9 @@ nav ul li a:hover {
 .deleteAccount:hover {
   transition: 0.2s;
   background-color: rgb(179, 0, 0);
+}
+
+.adminAddUpdateProd{
+  display: flex;
+  flex-flow: row;
 }
