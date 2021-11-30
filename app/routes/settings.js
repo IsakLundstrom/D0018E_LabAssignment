@@ -108,7 +108,7 @@ router.post('/updateProduct', function(req, res){
     if (result.length > 0) {
 
       //Set variables to previous if not changed
-      if (pName == undefined) pName = result[0].Pname;
+      if (pName == '') pName = result[0].Pname;
       if (price == '') price = result[0].Price;
       if (pDesc == '') pDesc = result[0].Pdesc;
       if (picture == '') picture = result[0].Picture;

@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
       rating += result2[i].Rating;
       count++;
     }
-    rating /= count;
+    if(count > 0) rating /= count;
     rating = Number.parseFloat(rating).toPrecision(2);
     console.log("RATING IS "+ rating);
 
@@ -46,14 +46,14 @@ router.post('/makeReview', function(req, res, next) {
   
   var sql1 = `SELECT Fname FROM Users WHERE UserID = ${userID}`;
     db.query(sql1, function (err, result) {
-        if (err) throw err;
-        userName = result[0].Fname;
+      if (err) throw err;
+      userName = result[0].Fname;
 
-        var sql2 = `INSERT INTO Reviews (ProdID, UserName, Rating, Comment) VALUES ('${prodID}', '${userName}', ${rating}, '${comment}')`;
-        db.query(sql2, function (err, result) {
-            if (err) throw err;
-            console.log("Review prod = " + prodID + " RATING = " + rating + " comment = " + comment);
-        });
+      var sql2 = `INSERT INTO Reviews (ProdID, UserName, Rating, Comment) VALUES ('${prodID}', '${userName}', ${rating}, '${comment}')`;
+      db.query(sql2, function (err, result) {
+          if (err) throw err;
+          console.log("Review prod = " + prodID + " RATING = " + rating + " comment = " + comment);
+      });
       res.redirect("/product?id=" +prodID);
       res.end;
     });
@@ -69,13 +69,13 @@ router.get('/removeReview', function(req, res, next) {
   var prodID = req.query.prodID;
   
   var sql1 = `DELETE FROM Reviews WHERE ReviewID = ${revID}`;
-    db.query(sql1, function (err, result) {
-        if (err) throw err;
+  db.query(sql1, function (err, result) {
+      if (err) throw err;
 
-        console.log("Review with revID = " + revID + " has been deleted");
-        res.redirect("/product?id=" +prodID);
-        res.end();
-    });
+      console.log("Review with revID = " + revID + " has been deleted");
+      res.redirect("/product?id=" +prodID);
+      res.end();
+  });
 
 });
 
