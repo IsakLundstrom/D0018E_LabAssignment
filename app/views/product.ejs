@@ -58,16 +58,20 @@
                     </section>
 
                     
-                    <section class="review container">
-                        <h2>Make your own review</h2>
-                        <form action="/product/makeReview" method="POST">
-                            <input class="input" type="number" name="rating" min="0" max="5" placeholder="rating">
-                            <textarea class="comment input" type="text" name="comment" autocomplete="off" placeholder="comment"></textarea>
-                            <input type="hidden" name="id" value="<%=data.ProdID; %>" >
-                            <input class="input" type="submit" value="Submit">
-                        </form>
+                    <section class="reviewContent container">
+                        <% if (session.userid) { %>
+                            <h2>Make your own review</h2>
+                            <form action="/product/makeReview" method="POST">
+                                <input class="input" type="number" name="rating" min="0" max="5" placeholder="rating">
+                                <textarea class="comment input" type="text" name="comment" autocomplete="off" placeholder="comment"></textarea>
+                                <input type="hidden" name="id" value="<%=data.ProdID; %>" >
+                                <input class="input" type="submit" value="Submit">
+                            </form>
+                    
+                        <% } %>
+                        
 
-                        <section class="reviewShower">
+                        <section class="reviews">
                             <h2>User reviews</h2>
                             <%
                             if(review.length != 0) {
@@ -75,13 +79,16 @@
                             %>
 
                             <section class="oneReview container">
-                                <p><%=reviewData.Comment; %></p>
-                                <p>User rated: <%=reviewData.Rating; %>/5</p>
-                                <p>Review made by: <%=reviewData.UserName; %></p>
+                                <section class="reviewer">
+                                    <p>Review made by: <%=reviewData.UserName; %></p>
+                                    <p>User rated: <%=reviewData.Rating; %>/5</p>
+                                </section>
+                                <section class="comment">
+                                    <p><%=reviewData.Comment; %></p>
+                                </section>
                                 <% if (session.isAdmin) { %>
                                     <a class="remove" href="/product/removeReview?revID=<%=reviewData.ReviewID; %>&prodID=<%=data.ProdID; %>">X</a> 
                                 <%} %> 
-
                                 
                             </section>
 

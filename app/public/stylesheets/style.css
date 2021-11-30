@@ -282,8 +282,10 @@ nav ul li a:hover {
   width: 13%;
 }
 
-.review{
+
+.reviewContent{
   padding: 20px;
+  padding-top: 0;
 }
 
 .comment{
@@ -294,13 +296,25 @@ nav ul li a:hover {
 
 .oneReview {
   max-width: 550px;
+  display: flex;
+  flex-flow: row;
 }
 
 .oneReview p{
   margin: 4px;
 }
 
+.reviewer {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+}
 
+.comment {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 10px;
+}
 
 /* Cart */
 .cartPic{
