@@ -92,17 +92,63 @@ router.get('/addToCart', function(req, res, next) {
 
 router.get('/removeFromCart', function(req, res, next) {
 
-    var prodID = req.query.id;
-    console.log("Cart prodID: " + prodID);
+  var prodID = req.query.id;
+  console.log("Cart prodID: " + prodID);
 
-    var sql = `DELETE FROM Cart WHERE ProdID = ${prodID} AND UserID = ${req.session.userid}`;
-      db.query(sql, function (err, result) {
+  var sql = `DELETE FROM Cart WHERE ProdID = ${prodID} AND UserID = ${req.session.userid}`;
+    db.query(sql, function (err, result) {
+        if (err) throw err;
+        
+        res.redirect("/cart")
+
+    });
+});
+
+router.post('/orderCart', function(req, res, next) {
+
+  var sql = `SELECT * FROM Cart, Products WHERE Cart.UserID = ${req.session.userid} AND Products.ProdID = Cart.ProdID;`;
+    db.query(sql, function (err, resultCart) {
+      if (err) throw err;
+
+      sql = `SELECT * FROM Users WHERE UserID = ${req.session.userid};`;
+      db.query(sql, function (err, resultUser) {
+        if (err) throw err;
+
+        sql = `SELECT COUNT(DISTINCT(OrderID)) AS NumOrders FROM Orders;`;
+        db.query(sql, function (err, resultNumOrders) {
           if (err) throw err;
-          
-          res.redirect("/cart")
-  
+          // console.log(resultNumOrders[0]);
+          // console.log(resultNumOrders[0].NumOrders);
+
+          sql = `INSERT INTO Orders (OrderID, ProdID, Pname, UserID, UserName, Address, Price, AmountToBuy) VALUES `;
+          for (let i = 0; i < resultCart.length; i++) {
+            const cart = resultCart[i];
+            sql += `(${resultNumOrders[0].NumOrders + 1}, ${cart.ProdID}, '${cart.Pname}', ${resultUser[0].UserID}, '${resultUser[0].Fname} ${resultUser[0].Lname}', '${resultUser[0].HomeAddress}', ${cart.Price}, ${cart.AmountToBuy})`
+            if(i+1 < resultCart.length) sql += `, `;
+          }
+          sql += `;`
+
+          db.query(sql, function (err, resultOrderMoved) {
+          if (err) throw err;
+            
+
+          });
+
+    
+        });
+      
       });
+
+      var sql1 = `DELETE FROM Cart WHERE Cart.UserID = ${req.session.userid};`;
+
+      db.query(sql1, function (err, resultOrderMoved) {
+      if (err) throw err;
+      
+      });
+
   });
+  res.redirect("/cart");
+});
 
 module.exports = router;
 

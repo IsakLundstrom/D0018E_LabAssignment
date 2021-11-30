@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('head.ejs'); %>
+    <title>Orders</title>
+</head>
+<body>
+
+    <%- include('header.ejs'); %>
+
+    <main>
+
+        <section class="mainContent">
+            
+            <h1>Orders</h1>
+
+            <table class="cartTable container">
+                <h2>To Ship</h2>
+                <tr>
+                    <th>OrderID | </th>
+                    <th class="cartMargin">Product ID | </th>
+                    <th class="cartMargin">Product Name | </th>
+                    <th class="cartMargin">User ID | </th>
+                    <th class="cartMargin">User Name | </th>
+                    <th class="cartMargin">Adress | </th>
+                    <th class="cartMargin">Price | </th>
+                    <th class="cartMargin">Amount To Send | </th>
+                    <th class="cartMargin">Ship</th>
+                </tr>
+                <%
+                if(orders.length != 0) {
+                    orders.forEach(function(data){
+                    if(data.OrderStatus == 'ToShip'){
+                %>
+                        <tr>
+                            <td><%=data.OrderID; %></td>
+                            <td><%=data.ProdID; %></td>
+                            <td><%=data.Pname; %></td>
+                            <td><%=data.UserID; %></td>
+                            <td><%=data.UserName; %></td>
+                            <td><%=data.Address; %></td>
+                            <td><%=data.Price; %></td>
+                            <td><%=data.AmountToBuy; %></td>
+                            <td><a class="" href="/orders/changeOrderStatus?orderID=<%=data.OrderID; %>&prodID=<%=data.ProdID; %>&status=Shipped">🚚</a></td>
+                        </tr>
+                <% 
+                        }
+                    });
+                } %>
+
+            </table>
+
+            <table class="cartTable container">
+                <h2>Shipped</h2>
+                <tr>
+                    <th>OrderID | </th>
+                    <th class="cartMargin">Product ID | </th>
+                    <th class="cartMargin">Product Name | </th>
+                    <th class="cartMargin">User ID | </th>
+                    <th class="cartMargin">User Name | </th>
+                    <th class="cartMargin">Adress | </th>
+                    <th class="cartMargin">Price | </th>
+                    <th class="cartMargin">Amount Sent | </th>
+                    <th class="cartMargin">Complete</th>
+                </tr>
+                <%
+                if(orders.length != 0) {
+                    orders.forEach(function(data){
+                    if(data.OrderStatus == 'Shipped'){
+                %>
+                        <tr>
+                            <td><%=data.OrderID; %></td>
+                            <td><%=data.ProdID; %></td>
+                            <td><%=data.Pname; %></td>
+                            <td><%=data.UserID; %></td>
+                            <td><%=data.UserName; %></td>
+                            <td><%=data.Address; %></td>
+                            <td><%=data.Price; %></td>
+                            <td><%=data.AmountToBuy; %></td>
+                            <td><a class="" href="/orders/changeOrderStatus?orderID=<%=data.OrderID; %>&prodID=<%=data.ProdID; %>&status=Completed">✅</a></td>
+                        </tr>
+                <% 
+                        }
+                    });
+                } %>
+
+            </table>
+
+            <table class="cartTable container">
+                <h2>Completed</h2>
+                <tr>
+                    <th>OrderID | </th>
+                    <th class="cartMargin">Product ID | </th>
+                    <th class="cartMargin">Product Name | </th>
+                    <th class="cartMargin">User ID | </th>
+                    <th class="cartMargin">User Name | </th>
+                    <th class="cartMargin">Adress | </th>
+                    <th class="cartMargin">Price | </th>
+                    <th class="cartMargin">Amount Sent</th>
+                </tr>
+                <%
+                if(orders.length != 0) {
+                    orders.forEach(function(data){
+                    if(data.OrderStatus == 'Completed'){
+                %>
+                        <tr>
+                            <td><%=data.OrderID; %></td>
+                            <td><%=data.ProdID; %></td>
+                            <td><%=data.Pname; %></td>
+                            <td><%=data.UserID; %></td>
+                            <td><%=data.UserName; %></td>
+                            <td><%=data.Address; %></td>
+                            <td><%=data.Price; %></td>
+                            <td><%=data.AmountToBuy; %></td>
+                        </tr>
+                <% 
+                        }
+                    });
+                } %>
+
+            </table>
+
+        </section>
+        
+    </main>
+
+</body>
+</html>

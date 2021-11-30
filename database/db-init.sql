@@ -43,13 +43,13 @@ CREATE TABLE Cart (
 CREATE TABLE Orders (
     OrderID INT NOT NULL,
     ProdID INT NOT NULL,
-    ProdName VARCHAR(32) NOT NULL,
+    Pname VARCHAR(32) NOT NULL,
     UserID INT NOT NULL,
     UserName VARCHAR(32) NOT NULL,
     Address VARCHAR(32) NOT NULL,
     Price DECIMAL(9,2) NOT NULL,
     AmountToBuy INT(4) NOT NULL,
-    OrderStatus ENUM('ToOrder', 'Shipped', 'Completed'),
+    OrderStatus ENUM('ToShip', 'Shipped', 'Completed') DEFAULT 'ToShip',
     PRIMARY KEY(OrderID, ProdID)
 );
 

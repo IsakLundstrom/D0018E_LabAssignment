@@ -13,38 +13,43 @@
         <section class="mainContent">
             
             <h1>Cart</h1>
-
-            <table class="cartTable container">
-                <tr>
-                    <th>Image | </th>
-                    <th class="cartMargin">Product | </th>
-                    <th class="cartMargin">Amount | </th>
-                    <th class="cartMargin">Price | </th>
-                    <th class="cartMargin">Remove</th>
-                </tr>
-                <%
-                var totalAmount = 0;
-                if(cart.length != 0) {
+            <section class="container">
+                <table class="cartTable">
+                    <tr>
+                        <th>Image | </th>
+                        <th class="cartMargin">Product | </th>
+                        <th class="cartMargin">Amount | </th>
+                        <th class="cartMargin">Price | </th>
+                        <th class="cartMargin">Remove</th>
+                    </tr>
+                    <%
                     var totalAmount = 0;
-                    cart.forEach(function(data){
-                        totalAmount = totalAmount + data.Price * data.AmountToBuy;
-                %>
-                <tr>
-                    <td><a href="/product?id=<%=data.ProdID; %>"><img class="cartPic" src="<%=data.Picture; %>" alt="Product pic"></a></td>
-                    <td><a href="/product?id=<%=data.ProdID; %>"><%=data.Pname; %></a></td>
-                    <td><%=data.AmountToBuy; %></td>
-                    <td><%=data.Price; %></td>
-                    <td><a class="remove" href="/cart/removeFromCart?id=<%=data.ProdID; %>">X</a></td>
-                </tr>
-                <% });
+                    if(cart.length != 0) {
+                        var totalAmount = 0;
+                        cart.forEach(function(data){
+                            totalAmount = totalAmount + data.Price * data.AmountToBuy;
+                    %>
+                    <tr>
+                        <td><a href="/product?id=<%=data.ProdID; %>"><img class="cartPic" src="<%=data.Picture; %>" alt="Product pic"></a></td>
+                        <td><a href="/product?id=<%=data.ProdID; %>"><%=data.Pname; %></a></td>
+                        <td><%=data.AmountToBuy; %></td>
+                        <td><%=data.Price; %></td>
+                        <td><a class="remove" href="/cart/removeFromCart?id=<%=data.ProdID; %>">X</a></td>
+                    </tr>
+                    <% });
 
-                
-                
-                } %>
+                    
+                    
+                    } %>
 
-            </table>
-
-            <p>The total amount is <%=totalAmount%>$</p>
+                </table>
+                <% totalAmount = Number.parseFloat(totalAmount).toFixed(2); %>
+            
+                <p>The total amount is <%=totalAmount%>$</p>
+                <form action="/cart/orderCart" method="post">
+                    <input type="submit" value="Order">
+                </form>
+            </section>
 
         </section>
         
