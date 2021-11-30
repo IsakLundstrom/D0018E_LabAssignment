@@ -26,7 +26,7 @@ CREATE TABLE Products (
     Price DECIMAL(9,2) NOT NULL,
     Pdesc TEXT NOT NULL,
     Picture VARCHAR(32) NOT NULL,
-    Rating DECIMAL(1,1) DEFAULT 0,
+    Rating DECIMAL(2,1) DEFAULT 0,
     AmountInStock INT NOT NULL DEFAULT 0,
     PRIMARY KEY(ProdID)
 );

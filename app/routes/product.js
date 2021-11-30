@@ -7,30 +7,31 @@ router.get('/', function(req, res, next) {
 
   var prodID = req.query.id;
   console.log("PRODUCT ID = " + prodID);
+  var sql2 = `SELECT * FROM Reviews WHERE ProdID = ${prodID}`;
+  db.query(sql2, function (err, result2) {
+    if (err) throw err;
+    var rating = 0;
+    var count = 0;
+    for (let i = 0; i < result2.length; i++) {
+      rating += result2[i].Rating;
+      count++;
+    }
+    rating /= count;
+    rating = Number.parseFloat(rating).toPrecision(2);
+    console.log("RATING IS "+ rating);
 
-  var sql1 = `SELECT * FROM Products WHERE ProdID = ${prodID}`;
-    db.query(sql1, function (err, result1) {
+    var sql3 = `UPDATE Products SET Rating = ${rating} WHERE ProdID = ${prodID}`;
+    db.query(sql3, function (err, result3) {
+      if (err) throw err;
+
+      var sql1 = `SELECT * FROM Products WHERE ProdID = ${prodID}`;
+      db.query(sql1, function (err, result1) {
         if (err) throw err;
 
-        var sql2 = `SELECT * FROM Reviews WHERE ProdID = ${prodID}`;
-        db.query(sql2, function (err, result2) {
-          if (err) throw err;
-          var rating = 0;
-          var count = 0;
-          for (let i = 0; i < result2.length; i++) {
-            rating += result2[i].Rating;
-            count++;
-          }
-          rating /= count;
-
-          var sql3 = `UPDATE Products SET Rating = ${rating} WHERE ProdID = '${prodID}'`;
-          db.query(sql3, function (err, result3) {
-            if (err) throw err;
-          });
-
-          res.render("product", { product: result1, review: result2 ,session: req.session });
-      });
+        res.render("product", { product: result1, review: result2 ,session: req.session });
+      });          
     });
+  });
 });
 
 
