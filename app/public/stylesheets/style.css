@@ -13,6 +13,7 @@ body {
 
 p{
   margin: 0;
+  /* word-break: break-word; */
 }
 
 .input {
@@ -253,6 +254,7 @@ nav ul li a:hover {
 .prodDescText{
   font-size: 80%;
   text-align: left;
+  word-break: break-word;
 }
 
 
@@ -288,10 +290,10 @@ nav ul li a:hover {
   padding-top: 0;
 }
 
-.comment{
-  width: 590px;
-  height: 100px auto;
+.commentBox{
+  height: 100px;
   resize: none;
+  margin-right: 0;
 }
 
 .oneReview {
@@ -310,15 +312,24 @@ nav ul li a:hover {
 }
 
 .reviewer {
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
+  display: block;
+  width: 20%;
+}
+
+.reviewer p{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden
+  /* Not work :( */
 }
 
 .comment {
-  display: flex;
-  align-items: flex-start;
+  width: 80%;
+  text-align: left;
   margin-left: 10px;
+  
+  word-break: break-word;
 }
 
 /* Cart */
