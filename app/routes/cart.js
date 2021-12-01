@@ -29,14 +29,13 @@ router.get('/addToCart', function(req, res, next) {
     var prodID = req.query.id;
     var amount = req.query.amount;
     var from = req.query.from;
-    console.log("From: " + from);
-
     
     var sql = `SELECT * FROM Cart WHERE UserID = ${req.session.userid} AND ProdID = ${prodID}`;
     db.query(sql, function (err, result) {
       if (err) {
         throw err;
       }
+      //If not in cart insert new row in db
       else if(result.length === 0) {
         var sql = `INSERT INTO Cart (UserID, ProdID, AmountToBuy) VALUES (${req.session.userid}, ${prodID}, ${amount})`; // JUST TEST SQL
         db.query(sql, function (err, result) {
@@ -51,16 +50,25 @@ router.get('/addToCart', function(req, res, next) {
               
               res.redirect("/product?id=" + prodID);
               
+            } 
+            else if(from == "cart"){
+              
+              res.redirect("/cart");
+              
             }
             else {
 
-              res.redirect("/cart")
+              res.redirect("/")
             }
 
     
         });
       }
-
+      //Check for not getting negative amount in cart
+      else if(result[0].AmountToBuy <= 1 && amount < 0){
+        res.redirect("/cart");
+      }
+      //If in cart update row
       else {
         var sql = `UPDATE Cart SET AmountToBuy = AmountToBuy + ${amount} WHERE UserID = ${req.session.userid} AND ProdID = ${prodID}`; // JUST TEST SQL
         db.query(sql, function (err, result) {
@@ -75,10 +83,15 @@ router.get('/addToCart', function(req, res, next) {
                
                res.redirect("/product?id=" + prodID);
                
+             } 
+             else if(from == "cart"){
+               
+               res.redirect("/cart");
+               
              }
              else {
  
-               res.redirect("/cart")
+               res.redirect("/")
              }
     
         });

@@ -29,13 +29,24 @@
                         cart.forEach(function(data){
                             totalAmount = totalAmount + data.Price * data.AmountToBuy;
                     %>
-                    <tr>
-                        <td><a href="/product?id=<%=data.ProdID; %>"><img class="cartPic" src="<%=data.Picture; %>" alt="Product pic"></a></td>
-                        <td><a href="/product?id=<%=data.ProdID; %>"><%=data.Pname; %></a></td>
-                        <td><%=data.AmountToBuy; %></td>
-                        <td><%=data.Price; %></td>
-                        <td><a class="remove" href="/cart/removeFromCart?id=<%=data.ProdID; %>">X</a></td>
-                    </tr>
+                        <tr>
+                            <td><a href="/product?id=<%=data.ProdID; %>"><img class="cartPic" src="<%=data.Picture; %>" alt="Product pic"></a></td>
+                            <td><a href="/product?id=<%=data.ProdID; %>"><%=data.Pname; %></a></td>
+                            <td>
+                                <% 
+                                if (data.AmountToBuy <= 1) {
+                                %>
+                                    <a class="" href="#">-</a>
+                                <% } else { %>
+                                    <a class="" href="/cart/addToCart?id=<%=data.ProdID; %>&amount=-1&from=cart">-</a>
+                                <% } %>
+                                
+                                <%=data.AmountToBuy; %>
+                                <a class="" href="/cart/addToCart?id=<%=data.ProdID; %>&amount=1&from=cart">+</a>
+                            </td>
+                            <td><%=data.Price; %></td>
+                            <td><a class="remove" href="/cart/removeFromCart?id=<%=data.ProdID; %>">X</a></td>
+                        </tr>
                     <% });
 
                     
