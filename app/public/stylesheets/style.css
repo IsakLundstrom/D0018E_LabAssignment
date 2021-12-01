@@ -290,7 +290,7 @@ nav ul li a:hover {
 
 .comment{
   width: 590px;
-  height: 100px;
+  height: 100px auto;
   resize: none;
 }
 
@@ -304,10 +304,15 @@ nav ul li a:hover {
   margin: 4px;
 }
 
+.weight {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
 .reviewer {
   display: flex;
   flex-flow: column;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .comment {
