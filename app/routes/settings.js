@@ -75,7 +75,7 @@ const fs = require("fs");
 var path = require('path');
 
 const upload = multer({
-  dest: "../public/images"
+  dest: "app/public/images"
 });
 
 
