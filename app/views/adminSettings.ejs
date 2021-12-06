@@ -4,7 +4,7 @@
         
     <section class="adminContent container">
         <h2 class="">Orders</h2>
-        <a href="/orders">link</a>
+        <a href="/orders">Go to all orders</a>
 
     </section>
 
@@ -12,11 +12,11 @@
         <table class="table">
             <h2 class="settingsInput">Products</h2>
             <tr>
-                <th>ProdID | </th>
-                <th>Prod image | </th>
-                <th>Prod name | </th>
-                <th>Amount in stock | </th>
-                <th>Price | </th>
+                <th>ProdID</th>
+                <th>Prod image</th>
+                <th>Prod name</th>
+                <th>Amount in stock</th>
+                <th>Price</th>
                 <th>Remove</th>
             </tr>
             <%
@@ -25,7 +25,11 @@
             %>
             <tr>
                 <td><%=data.ProdID; %></td>
-                <td><a href="/product?id=<%=data.ProdID; %>"><img class="cartPic" src="<%=data.Picture; %>" alt="Product pic"></a></td>
+                <td>
+                    <section class="cartPic">
+                        <a href="/product?id=<%=data.ProdID; %>"><img class="cartPic" src="<%=data.Picture; %>" alt="Product pic"></a>
+                    </section>
+                </td>
                 <td><a href="/product?id=<%=data.ProdID; %>"><%=data.Pname; %></a></td>
                 <td><%=data.AmountInStock; %></td>
                 <td><%=data.Price; %></td>
@@ -39,7 +43,7 @@
     
     <section class="adminContent container">
         <section class="adminAddUpdateProd">
-            <form class="productsForm" action="/settings/addProduct" method="POST">
+            <form class="productsForm" enctype="multipart/form-data" action="/settings/addProduct" method="POST">
                 <h2 class="settingsInput">Add a product</h2>
                 <section class="settingsInput">
                     <p>Product name</p>
@@ -112,12 +116,12 @@
         <table class="Table">
             <h2 class="settingsInput">Users</h2>
             <tr class="manageUsers">
-                <th>UserID | </th>
-                <th>Name | </th>
-                <th>Last name | </th>
-                <th>Password | </th>
-                <th>Mail | </th>
-                <th>Address | </th>
+                <th>UserID</th>
+                <th>Name</th>
+                <th>Last name</th>
+                <th>Password</th>
+                <th>Mail</th>
+                <th>Address</th>
                 <th>Remove</th>
             </tr>
             <%

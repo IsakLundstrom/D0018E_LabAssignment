@@ -17,14 +17,14 @@
             <table class="cartTable container">
                 <h2>To Ship</h2>
                 <tr>
-                    <th>OrderID | </th>
-                    <th class="cartMargin">Product ID | </th>
-                    <th class="cartMargin">Product Name | </th>
-                    <th class="cartMargin">User ID | </th>
-                    <th class="cartMargin">User Name | </th>
-                    <th class="cartMargin">Adress | </th>
-                    <th class="cartMargin">Price | </th>
-                    <th class="cartMargin">Amount To Send | </th>
+                    <th>OrderID</th>
+                    <th class="cartMargin">Product ID</th>
+                    <th class="cartMargin">Product Name</th>
+                    <th class="cartMargin">User ID</th>
+                    <th class="cartMargin">User Name</th>
+                    <th class="cartMargin">Address</th>
+                    <th class="cartMargin">Price</th>
+                    <th class="cartMargin">Amount To Send</th>
                     <th class="cartMargin">Ship</th>
                 </tr>
                 <%
@@ -49,18 +49,18 @@
                 } %>
 
             </table>
-
+            
             <table class="cartTable container">
                 <h2>Shipped</h2>
                 <tr>
-                    <th>OrderID | </th>
-                    <th class="cartMargin">Product ID | </th>
-                    <th class="cartMargin">Product Name | </th>
-                    <th class="cartMargin">User ID | </th>
-                    <th class="cartMargin">User Name | </th>
-                    <th class="cartMargin">Adress | </th>
-                    <th class="cartMargin">Price | </th>
-                    <th class="cartMargin">Amount Sent | </th>
+                    <th>OrderID</th>
+                    <th class="cartMargin">Product ID</th>
+                    <th class="cartMargin">Product Name</th>
+                    <th class="cartMargin">User ID</th>
+                    <th class="cartMargin">User Name</th>
+                    <th class="cartMargin">Address</th>
+                    <th class="cartMargin">Price</th>
+                    <th class="cartMargin">Amount Sent</th>
                     <th class="cartMargin">Complete</th>
                 </tr>
                 <%
@@ -89,13 +89,13 @@
             <table class="cartTable container">
                 <h2>Completed</h2>
                 <tr>
-                    <th>OrderID | </th>
-                    <th class="cartMargin">Product ID | </th>
-                    <th class="cartMargin">Product Name | </th>
-                    <th class="cartMargin">User ID | </th>
-                    <th class="cartMargin">User Name | </th>
-                    <th class="cartMargin">Adress | </th>
-                    <th class="cartMargin">Price | </th>
+                    <th>OrderID</th>
+                    <th class="cartMargin">Product ID</th>
+                    <th class="cartMargin">Product Name</th>
+                    <th class="cartMargin">User ID</th>
+                    <th class="cartMargin">User Name</th>
+                    <th class="cartMargin">Address</th>
+                    <th class="cartMargin">Price</th>
                     <th class="cartMargin">Amount Sent</th>
                 </tr>
                 <%
@@ -125,6 +125,12 @@
     </main>
 
     <%- include('footer.ejs'); %>
+
+    <script>
+        if (window.location.href == (window.location.protocol + "//" +window.location.host + "/orders?product=notInStock")) {
+            alert("Not enough items in stock, could not ship");
+        }
+    </script>
 
 </body>
 </html>

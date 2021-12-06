@@ -4,6 +4,7 @@ html {
   box-sizing: border-box;
 }
 
+
 *,
 *:before,
 *:after {
@@ -43,6 +44,14 @@ p{
 .input[type=submit]{
   width: 100%;
   cursor: pointer;
+  
+}
+
+table tr th, table tr td{
+  padding: 0 5px;
+}
+
+table tr th {
   
 }
 
@@ -219,7 +228,7 @@ footer{
 }
 
 /* .table {
-  background-color: red;
+  text-decoration: none;
 } */
 
 
@@ -366,6 +375,10 @@ footer{
 }
 
 /* Cart */
+.emptyCartText{
+  padding: 20px;
+}
+
 .cartPic{
   height: 67px;
 }
@@ -376,6 +389,16 @@ footer{
 
 .cartMargin {
   margin-left: 100px;
+}
+
+.prodNameCart{
+  text-decoration: none;
+  color: black;
+}
+
+.plusMinusCartButton{
+  text-decoration: none;
+  color: #37371F;
 }
 
 .remove{
@@ -409,7 +432,7 @@ footer{
 }
 
 
-#loginError{
+#loginError, #shipError{
   margin-top: 0;
   color: red;
   font-weight: bolder;

@@ -49,7 +49,8 @@ router.get('/changeOrderStatus', function (req, res, next) {
                     });
                 }
                 else if (amountToBuyResult[0].AmountToBuy > amountInStockResult[0].AmountInStock && status === "Shipped") {
-                    res.redirect("/");
+                    var url = encodeURIComponent('notInStock');
+                    res.redirect('/orders?product=' + url);
                     res.end();
                 }
                 else {
@@ -68,7 +69,5 @@ router.get('/changeOrderStatus', function (req, res, next) {
         });
     });
 });
-
-
 
 module.exports = router;

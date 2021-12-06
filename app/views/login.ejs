@@ -33,10 +33,10 @@
 
 
     <script>
-        if (window.location.href == "http://130.240.200.33:3000/login?login=notExist") {
+        if (window.location.href == (window.location.protocol + "//" +window.location.host + "/login?login=notExist")) {
             document.getElementById("loginError").innerHTML = "Account with this email and password does not exist";
         }
-        else if (window.location.href == "http://130.240.200.33:3000/login?login=false") {
+        else if (window.location.href == (window.location.protocol + "//" +window.location.host + "/login?login=false")) {
             document.getElementById("loginError").innerHTML = "Please login or sign up before proceeding";
         }
         else {

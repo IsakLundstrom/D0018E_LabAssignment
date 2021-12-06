@@ -12,14 +12,21 @@
 
         <section class="mainContent">
             
-            <h1>Cart</h1>
+            <h2>Cart</h2>
             <section class="container">
+
+            <% if (cart.length == 0) { %>
+
+                <p class="emptyCartText">Your cart is empty 🐱‍👤.</p>
+
+            <% } else { %>
+
                 <table class="cartTable">
                     <tr>
-                        <th>Image | </th>
-                        <th class="cartMargin">Product | </th>
-                        <th class="cartMargin">Amount | </th>
-                        <th class="cartMargin">Price | </th>
+                        <th>Image</th>
+                        <th class="cartMargin">Product</th>
+                        <th class="cartMargin">Amount</th>
+                        <th class="cartMargin">Price</th>
                         <th class="cartMargin">Remove</th>
                     </tr>
                     <%
@@ -30,27 +37,28 @@
                             totalAmount = totalAmount + data.Price * data.AmountToBuy;
                     %>
                         <tr>
-                            <td><a href="/product?id=<%=data.ProdID; %>"><img class="cartPic" src="<%=data.Picture; %>" alt="Product pic"></a></td>
-                            <td><a href="/product?id=<%=data.ProdID; %>"><%=data.Pname; %></a></td>
+                            <td>
+                                <section class="cartPic">
+                                    <a href="/product?id=<%=data.ProdID; %>"><img class="cartPic" src="<%=data.Picture; %>" alt="Product pic"></a>
+                                </section>
+                            </td>
+                            <td><a class="prodNameCart" href="/product?id=<%=data.ProdID; %>"><%=data.Pname; %></a></td>
                             <td>
                                 <% 
                                 if (data.AmountToBuy <= 1) {
                                 %>
-                                    <a class="" href="#">-</a>
+                                    <a class="plusMinusCartButton" href="#">-</a>
                                 <% } else { %>
-                                    <a class="" href="/cart/addToCart?id=<%=data.ProdID; %>&amount=-1&from=cart">-</a>
+                                    <a class="plusMinusCartButton" href="/cart/addToCart?id=<%=data.ProdID; %>&amount=-1&from=cart">-</a>
                                 <% } %>
                                 
                                 <%=data.AmountToBuy; %>
-                                <a class="" href="/cart/addToCart?id=<%=data.ProdID; %>&amount=1&from=cart">+</a>
+                                <a class="plusMinusCartButton" href="/cart/addToCart?id=<%=data.ProdID; %>&amount=1&from=cart">+</a>
                             </td>
                             <td><%=data.Price; %></td>
                             <td><a class="remove" href="/cart/removeFromCart?id=<%=data.ProdID; %>">X</a></td>
                         </tr>
                     <% });
-
-                    
-                    
                     } %>
 
                 </table>
@@ -61,6 +69,9 @@
                     <input type="submit" value="Order">
                 </form>
             </section>
+            
+            <% } %>
+            
 
         </section>
         
