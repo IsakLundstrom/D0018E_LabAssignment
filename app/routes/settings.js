@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var db=require('../db'); // GET ACCESS TO DB
+var db = require('../db'); // GET ACCESS TO DB
 
 // GET settings page. 
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   //No userid redirect to home page
-  if(!req.session.userid){
-      res.redirect('/');
-      return;
+  if (!req.session.userid) {
+    res.redirect('/');
+    return;
   }
 
   var sql1 = `SELECT * FROM Users WHERE UserID=${req.session.userid}`;
@@ -22,19 +22,25 @@ router.get('/', function(req, res, next) {
       db.query(sql3, function (err, result3) {
         if (err) throw err;
 
-        res.render("settings", { UserInfo: result1, Products: result2, Users: result3, session: req.session });
+        var sql4 = `SELECT * FROM Orders WHERE UserID = ${req.session.userid};`;
+        db.query(sql4, function (err, result4) {
+          if (err) throw err;
+
+          res.render("settings", { UserInfo: result1, Products: result2, Users: result3, orders: result4, session: req.session });
+        });
+
       });
 
     });
-    
+
   });
-  
+
 });
 
 //Post/Change User info to the datbase
-router.post('/settingsForm', function(req, res){  
+router.post('/settingsForm', function (req, res) {
   //Get data from the form  
-  var fName = req.body.fName; 
+  var fName = req.body.fName;
   var lName = req.body.lName;
   var password = req.body.password;
   var address = req.body.address;
@@ -50,7 +56,7 @@ router.post('/settingsForm', function(req, res){
   });
 });
 
-router.get('/deleteAccount', function(req, res){  
+router.get('/deleteAccount', function (req, res) {
 
   var sql = `DELETE FROM Users WHERE UserID = ${req.session.userid}`;
   // QUERY DB
@@ -64,38 +70,70 @@ router.get('/deleteAccount', function(req, res){
   });
 });
 
-router.post('/addProduct', function(req, res){  
+const multer = require("multer");
+const fs = require("fs");
+var path = require('path');
 
-  if(!req.session.isAdmin){
+const upload = multer({
+  dest: "../public/images"
+});
+
+
+
+router.post('/addProduct', upload.single("picture"), function (req, res) {
+
+  if (!req.session.isAdmin) {
     res.redirect('/');
     return;
   }
 
+  console.log(req.body);
+  console.log(req.file);
+
   //Get data from the form  
-  var pName = req.body.pName; 
+  var pName = req.body.pName;
   var price = req.body.price;
   var pDesc = req.body.pDesc;
-  var picture = req.body.picture;
+  var picture = req.file.originalname;
   var amount = req.body.amount;
 
   console.log(picture);
 
   var sql = `INSERT INTO Products (Pname, Price, Pdesc, Picture, AmountInStock) VALUES ('${pName}', '${price}', '${pDesc}', '/images/${picture}', '${amount}')`;
-    // QUERY DB
-    db.query(sql, function (err, result) {
-      if (err) throw err;
-      console.log("1 record inserted"); //For debug
-
-    res.redirect('/settings');
-    res.end();
+  // QUERY DB
+  db.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("1 record inserted"); //For debug
   });
+
+
+  const tempPath = req.file.path;
+  const targetPath = path.join(__dirname, "../public/images/" + req.file.originalname);
+
+  // if (path.extname(req.file.originalname).toLowerCase() === ".png") {
+    fs.rename(tempPath, targetPath, err => {
+      if (err) return err;
+      console.log('if');
+    });
+  // } else {
+  //   fs.unlink(tempPath, err => {
+  //     if (err) return err;
+      
+  //     console.log('else');
+
+  //   });
+  // }
+
+  res.redirect('/settings');
+  res.end();
+
 });
 
 //Post/Change User info to the datbase
-router.post('/updateProduct', function(req, res){  
+router.post('/updateProduct', function (req, res) {
   //Get data from the form  
-  var pID = req.body.pID; 
-  var pName = req.body.pName; 
+  var pID = req.body.pID;
+  var pName = req.body.pName;
   var price = req.body.price;
   var pDesc = req.body.pDesc;
   var picture = req.body.picture;
@@ -119,8 +157,8 @@ router.post('/updateProduct', function(req, res){
       db.query(sql, function (err, result2) {
         if (err) throw err;
         console.log("Record updated"); //For debug
-  
-        
+
+
       });
     }
     res.redirect('/settings');
@@ -128,9 +166,9 @@ router.post('/updateProduct', function(req, res){
   });
 });
 
-router.get('/removeProduct', function(req, res, next) {
+router.get('/removeProduct', function (req, res, next) {
 
-  if(!req.session.isAdmin){
+  if (!req.session.isAdmin) {
     res.redirect('/');
     return;
   }
@@ -138,18 +176,18 @@ router.get('/removeProduct', function(req, res, next) {
   var prodID = req.query.id;
 
   var sql = `DELETE FROM Products WHERE ProdID = ${prodID}`;
-    db.query(sql, function (err, result) {
-      if (err) throw err;
-      
-      res.redirect("/settings");
-      res.end();
-    });
+  db.query(sql, function (err, result) {
+    if (err) throw err;
+
+    res.redirect("/settings");
+    res.end();
+  });
 });
 
 
-router.get('/removeUser', function(req, res, next) {
+router.get('/removeUser', function (req, res, next) {
 
-  if(!req.session.isAdmin){
+  if (!req.session.isAdmin) {
     res.redirect('/');
     return;
   }
@@ -157,12 +195,12 @@ router.get('/removeUser', function(req, res, next) {
   var usersID = req.query.id;
 
   var sql = `DELETE FROM Users WHERE UserID = ${usersID}`;
-    db.query(sql, function (err, result) {
-      if (err) throw err;
-      
-      res.redirect("/settings");
-      res.end();
-    });
+  db.query(sql, function (err, result) {
+    if (err) throw err;
+
+    res.redirect("/settings");
+    res.end();
+  });
 });
 
 
