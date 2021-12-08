@@ -111,14 +111,14 @@ router.post('/addProduct', upload.single("picture"), function (req, res) {
   const targetPath = path.join(__dirname, "../public/images/" + req.file.originalname);
 
   // if (path.extname(req.file.originalname).toLowerCase() === ".png") {
-    fs.rename(tempPath, targetPath, err => {
-      if (err) return err;
-      console.log('if');
-    });
+  fs.rename(tempPath, targetPath, err => {
+    if (err) return err;
+    console.log('if');
+  });
   // } else {
   //   fs.unlink(tempPath, err => {
   //     if (err) return err;
-      
+
   //     console.log('else');
 
   //   });
@@ -130,14 +130,20 @@ router.post('/addProduct', upload.single("picture"), function (req, res) {
 });
 
 //Post/Change User info to the datbase
-router.post('/updateProduct', function (req, res) {
-  //Get data from the form  
+router.post('/updateProduct', upload.single("picture"), function (req, res) {
+  //Get data from the form
+  
+  console.log(req.body);
+  console.log(req.file);
+
   var pID = req.body.pID;
   var pName = req.body.pName;
   var price = req.body.price;
   var pDesc = req.body.pDesc;
-  var picture = req.body.picture;
+  var picture = req.file.originalname;
   var amount = req.body.amount;
+
+  console.log(picture);
 
   var sql = `SELECT * FROM Products WHERE ProdID = ${pID};`;
   db.query(sql, function (err, result) {
@@ -149,10 +155,21 @@ router.post('/updateProduct', function (req, res) {
       if (pName == '') pName = result[0].Pname;
       if (price == '') price = result[0].Price;
       if (pDesc == '') pDesc = result[0].Pdesc;
-      if (picture == '') picture = result[0].Picture;
       if (amount == '') amount = 0;
+      if (picture == '') {
+        picture = result[0].Picture;
+      }
+      else {
+        const tempPath = req.file.path;
+        const targetPath = path.join(__dirname, "../public/images/" + req.file.originalname);
 
-      sql = `UPDATE Products SET Pname = '${pName}', Price = '${price}', Pdesc = '${pDesc}', Picture = '${picture}', AmountInStock = ${result[0].AmountInStock} + ${amount} WHERE ProdID = ${pID}`;
+        fs.rename(tempPath, targetPath, err => {
+          if (err) return err;
+          console.log('if');
+        });
+      }
+
+      sql = `UPDATE Products SET Pname = '${pName}', Price = '${price}', Pdesc = '${pDesc}', Picture = '/images/${picture}', AmountInStock = ${result[0].AmountInStock} + ${amount} WHERE ProdID = ${pID}`;
       // QUERY DB
       db.query(sql, function (err, result2) {
         if (err) throw err;
