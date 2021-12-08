@@ -140,7 +140,11 @@ router.post('/updateProduct', upload.single("picture"), function (req, res) {
   var pName = req.body.pName;
   var price = req.body.price;
   var pDesc = req.body.pDesc;
-  var picture = req.file.originalname;
+  if (req.file) {
+    var picture = '/images/' + req.file.originalname;
+  } else {
+    var picture = '';
+  }
   var amount = req.body.amount;
 
   console.log(picture);
@@ -169,7 +173,7 @@ router.post('/updateProduct', upload.single("picture"), function (req, res) {
         });
       }
 
-      sql = `UPDATE Products SET Pname = '${pName}', Price = '${price}', Pdesc = '${pDesc}', Picture = '/images/${picture}', AmountInStock = ${result[0].AmountInStock} + ${amount} WHERE ProdID = ${pID}`;
+      sql = `UPDATE Products SET Pname = '${pName}', Price = '${price}', Pdesc = '${pDesc}', Picture = '${picture}', AmountInStock = ${result[0].AmountInStock} + ${amount} WHERE ProdID = ${pID}`;
       // QUERY DB
       db.query(sql, function (err, result2) {
         if (err) throw err;
