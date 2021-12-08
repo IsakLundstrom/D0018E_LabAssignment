@@ -20,7 +20,7 @@ router.post('/loginForm', function (req, res) {
 
     //Login Successfull, redirect to home page
     if (result.length > 0) {
-      console.log("Successfull Login");
+
       req.session.userid = result[0].UserID;
       if (result[0].isAdmin) {
         req.session.isAdmin = true;
@@ -28,35 +28,10 @@ router.post('/loginForm', function (req, res) {
         req.session.isAdmin = false;
       }
 
-
-      //req.session.isAdmin = false;
-
-
-      //isAdmin Check
-      // sql = `SELECT * FROM Admins WHERE Admins.UserID = '${result[0].UserID}'`;
-      // db.query(sql, function (err, result, fields) {
-      //   if (err) throw err;
-
-      //   if (result.length > 0){
-      //     req.session.isAdmin = true;
-      //     console.log("Admin Login");
-      //   } else {
-      //     req.session.isAdmin = false;
-      //     console.log("NOT Admin Login");
-      //   }
-      //   console.log("ADmin");
-      //   console.log(req.session);
-
-      //   
-      // });
-
-      console.log("LOgin");
-      console.log(req.session);
       res.redirect('/');
     }
     //Login falied, reload page
     else {
-      console.log("did not login");
       var url = encodeURIComponent('notExist');
       res.redirect('/login?login=' + url);
     }

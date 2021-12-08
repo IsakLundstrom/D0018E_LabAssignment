@@ -6,7 +6,7 @@ var db = require('../db'); // GET ACCESS TO DB
 router.get('/', function (req, res, next) {
 
   var prodID = req.query.id;
-  console.log("PRODUCT ID = " + prodID);
+  
   var sql2 = `SELECT * FROM Reviews WHERE ProdID = ${prodID}`;
   db.query(sql2, function (err, result2) {
     if (err) throw err;
@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
     }
     if (count > 0) rating /= count;
     rating = Number.parseFloat(rating).toPrecision(2);
-    console.log("RATING IS " + rating);
+    
 
     var sql3 = `UPDATE Products SET Rating = ${rating} WHERE ProdID = ${prodID}`;
     db.query(sql3, function (err, result3) {

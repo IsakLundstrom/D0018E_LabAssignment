@@ -49,7 +49,7 @@ router.post('/settingsForm', function (req, res) {
   // QUERY DB
   db.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("Record updated"); //For debug
+
 
     res.redirect('/settings');
     res.end();
@@ -87,8 +87,7 @@ router.post('/addProduct', upload.single("picture"), function (req, res) {
     return;
   }
 
-  console.log(req.body);
-  console.log(req.file);
+
 
   //Get data from the form  
   var pName = req.body.pName;
@@ -97,32 +96,22 @@ router.post('/addProduct', upload.single("picture"), function (req, res) {
   var picture = req.file.originalname;
   var amount = req.body.amount;
 
-  console.log(picture);
+
 
   var sql = `INSERT INTO Products (Pname, Price, Pdesc, Picture, AmountInStock) VALUES ('${pName}', '${price}', '${pDesc}', '/images/${picture}', '${amount}')`;
   // QUERY DB
   db.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("1 record inserted"); //For debug
   });
 
 
   const tempPath = req.file.path;
   const targetPath = path.join(__dirname, "../public/images/" + req.file.originalname);
 
-  // if (path.extname(req.file.originalname).toLowerCase() === ".png") {
   fs.rename(tempPath, targetPath, err => {
     if (err) return err;
-    console.log('if');
   });
-  // } else {
-  //   fs.unlink(tempPath, err => {
-  //     if (err) return err;
 
-  //     console.log('else');
-
-  //   });
-  // }
 
   res.redirect('/settings');
   res.end();
@@ -132,9 +121,6 @@ router.post('/addProduct', upload.single("picture"), function (req, res) {
 //Post/Change User info to the datbase
 router.post('/updateProduct', upload.single("picture"), function (req, res) {
   //Get data from the form
-  
-  console.log(req.body);
-  console.log(req.file);
 
   var pID = req.body.pID;
   var pName = req.body.pName;
@@ -147,7 +133,7 @@ router.post('/updateProduct', upload.single("picture"), function (req, res) {
   }
   var amount = req.body.amount;
 
-  console.log(picture);
+
 
   var sql = `SELECT * FROM Products WHERE ProdID = ${pID};`;
   db.query(sql, function (err, result) {
@@ -169,7 +155,7 @@ router.post('/updateProduct', upload.single("picture"), function (req, res) {
 
         fs.rename(tempPath, targetPath, err => {
           if (err) return err;
-          console.log('if');
+
         });
       }
 
@@ -177,7 +163,7 @@ router.post('/updateProduct', upload.single("picture"), function (req, res) {
       // QUERY DB
       db.query(sql, function (err, result2) {
         if (err) throw err;
-        console.log("Record updated"); //For debug
+        
 
 
       });

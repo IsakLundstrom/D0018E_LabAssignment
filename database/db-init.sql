@@ -13,13 +13,6 @@ CREATE TABLE Users (
     PRIMARY KEY(UserID)
 );
 
--- CREATE TABLE Admins (
---     -- AdminID INT NOT NULL AUTO_INCREMENT,
---     UserID INT NOT NULL,
---     -- PRIMARY KEY(AdminID),
---     FOREIGN KEY (UserID) REFERENCES Users(UserID)
--- );
-
 CREATE TABLE Products (
     ProdID INT NOT NULL AUTO_INCREMENT,
     Pname VARCHAR(32) NOT NULL,
