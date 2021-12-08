@@ -5,7 +5,7 @@ var db = require('../db'); // GET ACCESS TO DB
 // GET home page. 
 router.get('/', function (req, res, next) {
 
-  var sql = `SELECT * FROM Products`;
+  var sql = `SELECT * FROM Products WHERE IsAvailable = 1`;
   db.query(sql, function (err, result) {
     if (err) throw err;
 

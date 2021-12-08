@@ -187,7 +187,7 @@ router.post('/updateProduct', upload.single("picture"), function (req, res) {
   });
 });
 
-router.get('/removeProduct', function (req, res, next) {
+router.get('/changeAvailabilityProduct', function (req, res, next) {
 
   if (!req.session.isAdmin) {
     res.redirect('/');
@@ -196,12 +196,17 @@ router.get('/removeProduct', function (req, res, next) {
 
   var prodID = req.query.id;
 
-  var sql = `DELETE FROM Products WHERE ProdID = ${prodID}`;
-  db.query(sql, function (err, result) {
+  var sql = `SELECT IsAvailable FROM Products WHERE ProdID = ${prodID};`;
+  db.query(sql, function (err, result1) {
     if (err) throw err;
 
-    res.redirect("/settings");
-    res.end();
+    var sql = `UPDATE Products SET IsAvailable = ${!result1[0].IsAvailable} WHERE ProdID = ${prodID}`;
+    db.query(sql, function (err, result) {
+      if (err) throw err;
+
+      res.redirect("/settings");
+      res.end();
+    });
   });
 });
 

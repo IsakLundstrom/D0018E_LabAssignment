@@ -46,7 +46,10 @@
                                 <input class="input" id="amountCart" type="number" max="99" min="1" value="1">
                                 <p class="prodAmoutText">Left in stock: <%=data.AmountInStock; %></p>
                             </div>
-                            <% if (session.userid) { %>
+                            <% if (!data.IsAvailable) { %>
+                                <p class="addToCartButton">This product is not available</p>
+                            <% } 
+                            else if (session.userid) { %>
                                 <a id="addToCartButton" class="addToCartButton" href="#"> Add to Cart</a>
                             <% } 
                             else { %>

@@ -191,6 +191,7 @@ footer{
 }
 .productContainerA img{
   height: 134px;
+  aspect-ratio: 1;
   border-radius: 50%;
 }
 
@@ -376,7 +377,9 @@ footer{
 }
 
 .cartPic{
+  border-radius: 50%;
   height: 67px;
+  aspect-ratio: 1;
 }
 
 .cartTable {

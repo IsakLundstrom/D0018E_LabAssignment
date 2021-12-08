@@ -17,7 +17,8 @@
                 <th>Prod name</th>
                 <th>Amount in stock</th>
                 <th>Price</th>
-                <th>Remove</th>
+                <th>Available</th>
+                <th>Change</th>
             </tr>
             <%
             if(Products.length != 0) {
@@ -33,7 +34,14 @@
                 <td><a href="/product?id=<%=data.ProdID; %>"><%=data.Pname; %></a></td>
                 <td><%=data.AmountInStock; %></td>
                 <td><%=data.Price; %></td>
-                <td><a class="remove" href="/settings/removeProduct?id=<%=data.ProdID; %>">X</a></td>
+                <td>
+                    <%if (data.IsAvailable) {%>
+                        <p>🟢</p>
+                    <%} else {%>
+                        <p>🔴</p>
+                    <%} %>
+                    </td>
+                <td><a class="remove" href="/settings/changeAvailabilityProduct?id=<%=data.ProdID; %>">🔄</a></td>
             </tr>
             <% });
         
@@ -73,7 +81,7 @@
                 <input class="input" type="submit" value="Add Product" />
             
             </form>
-            
+
             <form class="productsForm" enctype="multipart/form-data" action="/settings/updateProduct" method="POST">
                 <h2 class="settingsInput">Update a product</h2>
                 
