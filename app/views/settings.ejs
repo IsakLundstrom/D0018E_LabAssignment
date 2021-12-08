@@ -18,9 +18,10 @@
 
             <% } %>
 
-            <h2>Profile</h2>
-
             <section class="settingsContent container">
+
+                <h2>Profile</h2>
+
                 <%
                     if(UserInfo.length != 0) {
                         UserInfo.forEach(function(data){
@@ -56,32 +57,34 @@
 
             <% if(orders.length != 0) { %>
 
-                <table class="cartTable container">
-                    <h2>Orders</h2>
-                    <tr>
-                        <th>OrderID</th>
-                        <th class="cartMargin">Product</th>
-                        <th class="cartMargin">Address</th>
-                        <th class="cartMargin">Price</th>
-                        <th class="cartMargin">Amount</th>
-                        <th class="cartMargin">Status</th>
-                    </tr>
-                    <%
-                    orders.forEach(function(data){
-                    %>
+                <section class="container">
+                    <table class="cartTable">
+                        <h2>Orders</h2>
+                    
                         <tr>
-                            <td><%=data.OrderID; %></td>
-                            <td><%=data.Pname; %></td>
-                            <td><%=data.Address; %></td>
-                            <td><%=data.Price; %></td>
-                            <td><%=data.AmountToBuy; %></td>
-                            <td><%=data.OrderStatus; %></td>
+                            <th>OrderID</th>
+                            <th class="cartMargin">Product</th>
+                            <th class="cartMargin">Address</th>
+                            <th class="cartMargin">Price</th>
+                            <th class="cartMargin">Amount</th>
+                            <th class="cartMargin">Status</th>
                         </tr>
-                    <% 
-                    });
-                    %>
-
-                </table>
+                        <%
+                        orders.forEach(function(data){
+                        %>
+                            <tr>
+                                <td><%=data.OrderID; %></td>
+                                <td><%=data.Pname; %></td>
+                                <td><%=data.Address; %></td>
+                                <td><%=data.Price; %></td>
+                                <td><%=data.AmountToBuy; %></td>
+                                <td><%=data.OrderStatus; %></td>
+                            </tr>
+                        <%
+                        });
+                        %>
+                    </table>
+                </section>
 
             <% } %>
 
