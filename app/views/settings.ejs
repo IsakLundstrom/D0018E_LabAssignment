@@ -27,7 +27,7 @@
                         UserInfo.forEach(function(data){
                 %>
                 
-                <form class="settingsForm" action="/settings/settingsForm" method="POST">
+                <form action="/settings/changeUserInfo" method="POST">
                     <section class="settingsInput">
                         <p>First name</p>
                         <input class="input" type="text" name="fName" value="<%=data.Fname; %>" required autocomplete="off"/>

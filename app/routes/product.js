@@ -1,12 +1,11 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var db = require('../db'); // GET ACCESS TO DB
+var db = require("../db"); // GET ACCESS TO DB
 
-// GET home page. 
-router.get('/', function (req, res, next) {
-
+// GET home page.
+router.get("/", function (req, res, next) {
   var prodID = req.query.id;
-  
+
   var sql2 = `SELECT * FROM Reviews WHERE ProdID = ${prodID}`;
   db.query(sql2, function (err, result2) {
     if (err) throw err;
@@ -18,7 +17,6 @@ router.get('/', function (req, res, next) {
     }
     if (count > 0) rating /= count;
     rating = Number.parseFloat(rating).toPrecision(2);
-    
 
     var sql3 = `UPDATE Products SET Rating = ${rating} WHERE ProdID = ${prodID}`;
     db.query(sql3, function (err, result3) {
@@ -28,16 +26,18 @@ router.get('/', function (req, res, next) {
       db.query(sql1, function (err, result1) {
         if (err) throw err;
 
-        res.render("product", { product: result1, review: result2, session: req.session });
+        res.render("product", {
+          product: result1,
+          review: result2,
+          session: req.session,
+        });
       });
     });
   });
 });
 
-
 // Reviews
-router.post('/makeReview', function (req, res, next) {
-
+router.post("/makeReview", function (req, res, next) {
   var prodID = req.body.id;
   var userID = req.session.userid;
   var rating = req.body.rating;
@@ -52,16 +52,15 @@ router.post('/makeReview', function (req, res, next) {
     var sql2 = `INSERT INTO Reviews (ProdID, UserName, Rating, Comment) VALUES ('${prodID}', '${userName}', ${rating}, '${comment}')`;
     db.query(sql2, function (err, result) {
       if (err) throw err;
-      console.log("Review prod = " + prodID + " RATING = " + rating + " comment = " + comment);
     });
     res.redirect("/product?id=" + prodID);
     res.end;
   });
 });
 
-router.get('/removeReview', function (req, res, next) {
+router.get("/removeReview", function (req, res, next) {
   if (!req.session.isAdmin) {
-    res.redirect('/');
+    res.redirect("/");
     return;
   }
 
@@ -72,12 +71,9 @@ router.get('/removeReview', function (req, res, next) {
   db.query(sql1, function (err, result) {
     if (err) throw err;
 
-    console.log("Review with revID = " + revID + " has been deleted");
     res.redirect("/product?id=" + prodID);
     res.end();
   });
-
 });
-
 
 module.exports = router;

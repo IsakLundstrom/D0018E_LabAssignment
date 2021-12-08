@@ -1,12 +1,12 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var db = require('../db'); // GET ACCESS TO DB
+var db = require("../db"); // GET ACCESS TO DB
 
-// GET settings page. 
-router.get('/', function (req, res, next) {
+// GET settings page.
+router.get("/", function (req, res, next) {
   //No userid redirect to home page
   if (!req.session.userid) {
-    res.redirect('/');
+    res.redirect("/");
     return;
   }
 
@@ -26,20 +26,22 @@ router.get('/', function (req, res, next) {
         db.query(sql4, function (err, result4) {
           if (err) throw err;
 
-          res.render("settings", { UserInfo: result1, Products: result2, Users: result3, orders: result4, session: req.session });
+          res.render("settings", {
+            UserInfo: result1,
+            Products: result2,
+            Users: result3,
+            orders: result4,
+            session: req.session,
+          });
         });
-
       });
-
     });
-
   });
-
 });
 
 //Post/Change User info to the datbase
-router.post('/settingsForm', function (req, res) {
-  //Get data from the form  
+router.post("/changeUserInfo", function (req, res) {
+  //Get data from the form
   var fName = req.body.fName;
   var lName = req.body.lName;
   var password = req.body.password;
@@ -50,53 +52,43 @@ router.post('/settingsForm', function (req, res) {
   db.query(sql, function (err, result) {
     if (err) throw err;
 
-
-    res.redirect('/settings');
+    res.redirect("/settings");
     res.end();
   });
 });
 
-router.get('/deleteAccount', function (req, res) {
-
+router.get("/deleteAccount", function (req, res) {
   var sql = `DELETE FROM Users WHERE UserID = ${req.session.userid}`;
   // QUERY DB
   db.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("Account deleted"); //For debug
 
     req.session.destroy();
-    res.redirect('/');
+    res.redirect("/");
     res.end();
   });
 });
 
 const multer = require("multer");
 const fs = require("fs");
-var path = require('path');
+var path = require("path");
 
 const upload = multer({
-  dest: "app/public/images"
+  dest: "app/public/images",
 });
 
-
-
-router.post('/addProduct', upload.single("picture"), function (req, res) {
-
+router.post("/addProduct", upload.single("picture"), function (req, res) {
   if (!req.session.isAdmin) {
-    res.redirect('/');
+    res.redirect("/");
     return;
   }
 
-
-
-  //Get data from the form  
+  //Get data from the form
   var pName = req.body.pName;
   var price = req.body.price;
   var pDesc = req.body.pDesc;
   var picture = req.file.originalname;
   var amount = req.body.amount;
-
-
 
   var sql = `INSERT INTO Products (Pname, Price, Pdesc, Picture, AmountInStock) VALUES ('${pName}', '${price}', '${pDesc}', '/images/${picture}', '${amount}')`;
   // QUERY DB
@@ -104,22 +96,22 @@ router.post('/addProduct', upload.single("picture"), function (req, res) {
     if (err) throw err;
   });
 
-
   const tempPath = req.file.path;
-  const targetPath = path.join(__dirname, "../public/images/" + req.file.originalname);
+  const targetPath = path.join(
+    __dirname,
+    "../public/images/" + req.file.originalname
+  );
 
-  fs.rename(tempPath, targetPath, err => {
+  fs.rename(tempPath, targetPath, (err) => {
     if (err) return err;
   });
 
-
-  res.redirect('/settings');
+  res.redirect("/settings");
   res.end();
-
 });
 
 //Post/Change User info to the datbase
-router.post('/updateProduct', upload.single("picture"), function (req, res) {
+router.post("/updateProduct", upload.single("picture"), function (req, res) {
   //Get data from the form
 
   var pID = req.body.pID;
@@ -127,35 +119,33 @@ router.post('/updateProduct', upload.single("picture"), function (req, res) {
   var price = req.body.price;
   var pDesc = req.body.pDesc;
   if (req.file) {
-    var picture = '/images/' + req.file.originalname;
+    var picture = "/images/" + req.file.originalname;
   } else {
-    var picture = '';
+    var picture = "";
   }
   var amount = req.body.amount;
-
-
 
   var sql = `SELECT * FROM Products WHERE ProdID = ${pID};`;
   db.query(sql, function (err, result) {
     if (err) throw err;
 
     if (result.length > 0) {
-
       //Set variables to previous if not changed
-      if (pName == '') pName = result[0].Pname;
-      if (price == '') price = result[0].Price;
-      if (pDesc == '') pDesc = result[0].Pdesc;
-      if (amount == '') amount = 0;
-      if (picture == '') {
+      if (pName == "") pName = result[0].Pname;
+      if (price == "") price = result[0].Price;
+      if (pDesc == "") pDesc = result[0].Pdesc;
+      if (amount == "") amount = 0;
+      if (picture == "") {
         picture = result[0].Picture;
-      }
-      else {
+      } else {
         const tempPath = req.file.path;
-        const targetPath = path.join(__dirname, "../public/images/" + req.file.originalname);
+        const targetPath = path.join(
+          __dirname,
+          "../public/images/" + req.file.originalname
+        );
 
-        fs.rename(tempPath, targetPath, err => {
+        fs.rename(tempPath, targetPath, (err) => {
           if (err) return err;
-
         });
       }
 
@@ -163,20 +153,16 @@ router.post('/updateProduct', upload.single("picture"), function (req, res) {
       // QUERY DB
       db.query(sql, function (err, result2) {
         if (err) throw err;
-        
-
-
       });
     }
-    res.redirect('/settings');
+    res.redirect("/settings");
     res.end();
   });
 });
 
-router.get('/changeAvailabilityProduct', function (req, res, next) {
-
+router.get("/changeAvailabilityProduct", function (req, res, next) {
   if (!req.session.isAdmin) {
-    res.redirect('/');
+    res.redirect("/");
     return;
   }
 
@@ -186,7 +172,8 @@ router.get('/changeAvailabilityProduct', function (req, res, next) {
   db.query(sql, function (err, result1) {
     if (err) throw err;
 
-    var sql = `UPDATE Products SET IsAvailable = ${!result1[0].IsAvailable} WHERE ProdID = ${prodID}`;
+    var sql = `UPDATE Products SET IsAvailable = ${!result1[0]
+      .IsAvailable} WHERE ProdID = ${prodID}`;
     db.query(sql, function (err, result) {
       if (err) throw err;
 
@@ -196,11 +183,9 @@ router.get('/changeAvailabilityProduct', function (req, res, next) {
   });
 });
 
-
-router.get('/removeUser', function (req, res, next) {
-
+router.get("/removeUser", function (req, res, next) {
   if (!req.session.isAdmin) {
-    res.redirect('/');
+    res.redirect("/");
     return;
   }
 
@@ -214,6 +199,5 @@ router.get('/removeUser', function (req, res, next) {
     res.end();
   });
 });
-
 
 module.exports = router;

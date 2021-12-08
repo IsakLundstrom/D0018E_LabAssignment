@@ -1,15 +1,15 @@
-var express = require('express');
-const session = require('express-session');
+var express = require("express");
+const session = require("express-session");
 var router = express.Router();
-var db = require('../db');
+var db = require("../db");
 
 // GET login page.
-router.get('/', function (req, res, next) {
+router.get("/", function (req, res, next) {
   res.render("login", { session: req.session });
 });
 
 //POST form data for login
-router.post('/loginForm', function (req, res) {
+router.post("/loginForm", function (req, res) {
   var mail = req.body.mail;
   var password = req.body.password;
 
@@ -20,7 +20,6 @@ router.post('/loginForm', function (req, res) {
 
     //Login Successfull, redirect to home page
     if (result.length > 0) {
-
       req.session.userid = result[0].UserID;
       if (result[0].isAdmin) {
         req.session.isAdmin = true;
@@ -28,16 +27,15 @@ router.post('/loginForm', function (req, res) {
         req.session.isAdmin = false;
       }
 
-      res.redirect('/');
+      res.redirect("/");
     }
     //Login falied, reload page
     else {
-      var url = encodeURIComponent('notExist');
-      res.redirect('/login?login=' + url);
+      var url = encodeURIComponent("notExist");
+      res.redirect("/login?login=" + url);
     }
     res.end();
   });
-
 });
 
 module.exports = router;

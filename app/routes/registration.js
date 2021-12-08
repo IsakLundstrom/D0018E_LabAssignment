@@ -1,9 +1,9 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var db = require('../db');
+var db = require("../db");
 
 // GET reg page
-router.get('/', function (req, res, next) {
+router.get("/", function (req, res, next) {
   //TMP show table on website for debugg
   var sql = `SELECT * FROM Users`;
   db.query(sql, function (err, result) {
@@ -13,8 +13,8 @@ router.get('/', function (req, res, next) {
 });
 
 //Post/Resister User info to the datbase
-router.post('/usersForm', function (req, res) {
-  //Get data from the form  
+router.post("/usersForm", function (req, res) {
+  //Get data from the form
   var fName = req.body.fName;
   var lName = req.body.lName;
   var password = req.body.password;
@@ -26,13 +26,9 @@ router.post('/usersForm', function (req, res) {
   db.query(sql, function (err, result) {
     if (err) throw err;
 
-    res.redirect('/login');
+    res.redirect("/login");
     res.end();
   });
 });
-
-
-
-
 
 module.exports = router;
