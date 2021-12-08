@@ -132,9 +132,11 @@ router.post('/orderCart', function (req, res, next) {
 
         sql = `SELECT COUNT(DISTINCT(OrderID)) AS NumOrders FROM Orders;`;
         db.query(sql, function (err, resultNumOrders) {
-          if (err) throw err;
-          // console.log(resultNumOrders[0]);
-          // console.log(resultNumOrders[0].NumOrders);
+          if (err) {
+            return db.rollback(function () {
+              throw err;
+            });
+          }
 
           sql = `INSERT INTO Orders (OrderID, ProdID, Pname, UserID, UserName, Address, Price, AmountToBuy) VALUES `;
           for (let i = 0; i < resultCart.length; i++) {
@@ -145,10 +147,21 @@ router.post('/orderCart', function (req, res, next) {
           sql += `;`
 
           db.query(sql, function (err, resultOrderMoved) {
-            if (err) throw err;
-
+            if (err) {
+              return db.rollback(function () {
+                throw err;
+              });
+            }
 
           });
+
+        });
+        db.commit(function (err) {
+          if (err) {
+            return db.rollback(function () {
+              throw err;
+            });
+          }
 
         });
 

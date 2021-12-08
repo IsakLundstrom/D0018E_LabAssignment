@@ -27,21 +27,37 @@ router.get('/changeOrderStatus', function (req, res, next) {
 
         var sql1 = `SELECT AmountInStock FROM Products WHERE ProdID = ${prodID}`;
         db.query(sql1, function (err, amountInStockResult) {
-            if (err) throw err;
+            if (err) {
+                return db.rollback(function () {
+                    throw err;
+                });
+            }
 
             var sql2 = `SELECT AmountToBuy FROM Orders WHERE OrderID = ${orderID} AND ProdID = ${prodID}`;
             db.query(sql2, function (err, amountToBuyResult) {
-                if (err) throw err;
+                if (err) {
+                    return db.rollback(function () {
+                        throw err;
+                    });
+                }
 
                 if (amountToBuyResult[0].AmountToBuy < amountInStockResult[0].AmountInStock && status === "Shipped") {
                     var sql1 = `UPDATE Orders SET OrderStatus = '${status}' WHERE OrderID = ${orderID} AND ProdID = ${prodID}`;
                     db.query(sql1, function (err, result1) {
-                        if (err) throw err;
+                        if (err) {
+                            return db.rollback(function () {
+                                throw err;
+                            });
+                        }
                         var amount = amountInStockResult[0].AmountInStock - amountToBuyResult[0].AmountToBuy;
 
                         var sql = `UPDATE Products SET AmountInStock = ${amount} WHERE ProdID = ${prodID}`;
                         db.query(sql, function (err, result1) {
-                            if (err) throw err;
+                            if (err) {
+                                return db.rollback(function () {
+                                    throw err;
+                                });
+                            }
 
                         });
                         res.redirect("/orders");
@@ -56,14 +72,22 @@ router.get('/changeOrderStatus', function (req, res, next) {
                 else {
                     var sql1 = `UPDATE Orders SET OrderStatus = '${status}' WHERE OrderID = ${orderID} AND ProdID = ${prodID}`;
                     db.query(sql1, function (err, result1) {
-                        if (err) throw err;
+                        if (err) {
+                            return db.rollback(function () {
+                                throw err;
+                            });
+                        }
                         res.redirect("/orders");
                         res.end();
                     });
 
                 }
                 db.commit(function (err) {
-                    if (err) throw err;
+                    if (err) {
+                        return db.rollback(function () {
+                            throw err;
+                        });
+                    }
                 });
             });
         });
