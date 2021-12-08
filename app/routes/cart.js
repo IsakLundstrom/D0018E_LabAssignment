@@ -127,26 +127,30 @@ router.post('/orderCart', function (req, res, next) {
     db.query(sql, function (err, resultUser) {
       if (err) throw err;
 
-      sql = `SELECT COUNT(DISTINCT(OrderID)) AS NumOrders FROM Orders;`;
-      db.query(sql, function (err, resultNumOrders) {
+      db.beginTransaction(function (err) {
         if (err) throw err;
-        // console.log(resultNumOrders[0]);
-        // console.log(resultNumOrders[0].NumOrders);
 
-        sql = `INSERT INTO Orders (OrderID, ProdID, Pname, UserID, UserName, Address, Price, AmountToBuy) VALUES `;
-        for (let i = 0; i < resultCart.length; i++) {
-          const cart = resultCart[i];
-          sql += `(${resultNumOrders[0].NumOrders + 1}, ${cart.ProdID}, '${cart.Pname}', ${resultUser[0].UserID}, '${resultUser[0].Fname} ${resultUser[0].Lname}', '${resultUser[0].HomeAddress}', ${cart.Price}, ${cart.AmountToBuy})`
-          if (i + 1 < resultCart.length) sql += `, `;
-        }
-        sql += `;`
-
-        db.query(sql, function (err, resultOrderMoved) {
+        sql = `SELECT COUNT(DISTINCT(OrderID)) AS NumOrders FROM Orders;`;
+        db.query(sql, function (err, resultNumOrders) {
           if (err) throw err;
+          // console.log(resultNumOrders[0]);
+          // console.log(resultNumOrders[0].NumOrders);
 
+          sql = `INSERT INTO Orders (OrderID, ProdID, Pname, UserID, UserName, Address, Price, AmountToBuy) VALUES `;
+          for (let i = 0; i < resultCart.length; i++) {
+            const cart = resultCart[i];
+            sql += `(${resultNumOrders[0].NumOrders + 1}, ${cart.ProdID}, '${cart.Pname}', ${resultUser[0].UserID}, '${resultUser[0].Fname} ${resultUser[0].Lname}', '${resultUser[0].HomeAddress}', ${cart.Price}, ${cart.AmountToBuy})`
+            if (i + 1 < resultCart.length) sql += `, `;
+          }
+          sql += `;`
+
+          db.query(sql, function (err, resultOrderMoved) {
+            if (err) throw err;
+
+
+          });
 
         });
-
 
       });
 
