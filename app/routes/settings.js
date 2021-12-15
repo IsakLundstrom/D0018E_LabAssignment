@@ -90,6 +90,18 @@ router.post("/addProduct", upload.single("picture"), function (req, res) {
   var picture = req.file.originalname;
   var amount = req.body.amount;
 
+  if (price <= 0) {
+    res.redirect("/settings?error=invalidPrice");
+    res.end();
+    return;
+  }
+
+  if (amount < 0) {
+    res.redirect("/settings?error=negativeAmount");
+    res.end();
+    return;
+  }
+
   var sql = `INSERT INTO Products (Pname, Price, Pdesc, Picture, AmountInStock) VALUES ('${pName}', '${price}', '${pDesc}', '/images/${picture}', '${amount}')`;
   // QUERY DB
   db.query(sql, function (err, result) {
@@ -135,6 +147,19 @@ router.post("/updateProduct", upload.single("picture"), function (req, res) {
       if (price == "") price = result[0].Price;
       if (pDesc == "") pDesc = result[0].Pdesc;
       if (amount == "") amount = 0;
+
+      if (price <= 0) {
+        res.redirect("/settings?error=invalidPrice");
+        res.end();
+        return;
+      }
+
+      if (result[0].AmountInStock + Number(amount) < 0) {
+        res.redirect("/settings?error=negativeAmount");
+        res.end();
+        return;
+      }
+
       if (picture == "") {
         picture = result[0].Picture;
       } else {

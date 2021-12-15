@@ -94,5 +94,14 @@
 
     <%- include('footer.ejs'); %>
 
+    <script>
+        if (window.location.href == (window.location.protocol + "//" +window.location.host + "/settings?error=invalidPrice")) {
+            alert("A product has to have a positive price!");
+        }
+        if (window.location.href == (window.location.protocol + "//" +window.location.host + "/settings?error=negativeAmount")) {
+            alert("Items in stock can not be less then zero!");
+        }
+    </script>
+
 </body>
 </html>
