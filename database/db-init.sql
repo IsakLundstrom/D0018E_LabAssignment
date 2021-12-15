@@ -21,7 +21,7 @@ CREATE TABLE Products (
     Picture VARCHAR(32) NOT NULL,
     Rating DECIMAL(2,1) DEFAULT 0,
     AmountInStock INT NOT NULL DEFAULT 0,
-    IsAvaible BOOLEAN NOT NULL DEFAULT true,
+    IsAvailable BOOLEAN NOT NULL DEFAULT true,
     PRIMARY KEY(ProdID)
 );
 
