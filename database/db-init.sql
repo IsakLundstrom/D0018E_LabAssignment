@@ -18,7 +18,7 @@ CREATE TABLE Products (
     Pname VARCHAR(32) NOT NULL,
     Price DECIMAL(9,2) NOT NULL,
     Pdesc TEXT NOT NULL,
-    Picture VARCHAR(32) NOT NULL,
+    Picture VARCHAR(128) NOT NULL,
     Rating DECIMAL(2,1) DEFAULT 0,
     AmountInStock INT NOT NULL DEFAULT 0,
     IsAvailable BOOLEAN NOT NULL DEFAULT true,
