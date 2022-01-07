@@ -1,4 +1,4 @@
-# D0018E Lab Assignment Fall 2021 - HelixPen
+# D0018E Lab Assignment Fall 2021 - Helixpen
 
 ![Home page](screenshots/Home.png?raw=true "Title")
 
